@@ -5,6 +5,9 @@
 ### TinyDB
 python -m pip install tinydb
 
+### Bcrypt
+python -m pip install bcrypt
+
 ## Structure du JSON :
 
 Objet utilisateur :

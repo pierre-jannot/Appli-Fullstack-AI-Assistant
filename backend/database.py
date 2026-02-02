@@ -1,5 +1,6 @@
 from tinydb import TinyDB, Query
 from datetime import datetime
+import bcrypt
 
 db = TinyDB('./backend/database/test-database.json', indent=2)
 
@@ -19,7 +20,7 @@ def addUser(email,password,name,surname):
             {
                 "id":id,
                 "email":email,
-                "password":password,
+                "password":bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt()).decode(),
                 "name":name,
                 "surname":surname
             }
@@ -60,6 +61,8 @@ def addHistory(id,prompt,answer):
 # Commandes de test
 # addUser("test","test","test","test")
 # addUser("test","test","test","test")
+# addUser("test2","test","test","test")
+# addUser("test3","teste","test","test")
 # addHistory(1,"prompt","answer")
 # addHistory(1,"prompt2","answer2")
 # addHistory(12,"prompt","answer")
