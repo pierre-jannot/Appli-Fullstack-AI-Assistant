@@ -1,0 +1,56 @@
+{
+  "users": {
+    "1": {
+      "id": 1,
+      "email": "test",
+      "password": "$2b$12$J/IjFFjloFvYBkJKaCuAbuGZiez075hDI9.Q5M8phkQeGeI1wT92O",
+      "name": "test",
+      "surname": "test"
+    },
+    "2": {
+      "id": 2,
+      "email": "test2",
+      "password": "$2b$12$zZIkpks4NarN3gq6NdQxTuHWe9tNM.FeLCkK4y1KmFwkDthkUmpfq",
+      "name": "test",
+      "surname": "test"
+    },
+    "3": {
+      "id": 3,
+      "email": "test3",
+      "password": "$2b$12$djEJ7gFnI5ElP7Va/Vzg2ueZxipdXR4f.08Y2fcN5rvl0PBmjf9HS",
+      "name": "test",
+      "surname": "test"
+    }
+  },
+  "history": {
+    "1": {
+      "id": 1,
+      "history": [
+        {
+          "idprompt": 1,
+          "prompt": "prompt",
+          "answer": "answer",
+          "time": "2026-02-02 16:30:23"
+        },
+        {
+          "idprompt": 2,
+          "prompt": "prompt2",
+          "answer": "answer2",
+          "time": "2026-02-02 16:30:23"
+        },
+        {
+          "idprompt": 3,
+          "prompt": "prompt",
+          "answer": "answer",
+          "time": "2026-02-02 16:31:38"
+        },
+        {
+          "idprompt": 4,
+          "prompt": "prompt2",
+          "answer": "answer2",
+          "time": "2026-02-02 16:31:38"
+        }
+      ]
+    }
+  }
+}

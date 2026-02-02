@@ -58,7 +58,18 @@ def addHistory(id,prompt,answer):
         print("No user with this id.")
         return False
 
-# Commandes de test
+def verifyPassword(email, password):
+    user = users.get(User.email == email)
+    if not user:
+        return None
+
+    if bcrypt.checkpw(password.encode("utf-8"), user["password"].encode("utf-8")):
+        return ("vous êtes autorisé a écrire")   # OK
+    return ("il n'ya aucun utilisateur a ce nom")      # non
+
+
+
+#Commandes de test
 # addUser("test","test","test","test")
 # addUser("test","test","test","test")
 # addUser("test2","test","test","test")
@@ -66,3 +77,4 @@ def addHistory(id,prompt,answer):
 # addHistory(1,"prompt","answer")
 # addHistory(1,"prompt2","answer2")
 # addHistory(12,"prompt","answer")
+print(verifyPassword("test2","test"))
