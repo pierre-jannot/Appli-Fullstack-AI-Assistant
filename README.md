@@ -2,11 +2,18 @@
 
 ## Installation des dépendances
 
+### React Vite - lancement dans frontend
+npm install
+
 ### TinyDB
 python -m pip install tinydb
 
 ### Bcrypt
 python -m pip install bcrypt
+
+## Lancement de React dans frontend :
+
+npm run dev
 
 ## Structure du JSON :
 
