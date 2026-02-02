@@ -2,7 +2,8 @@ from tinydb import TinyDB, Query
 from datetime import datetime
 import bcrypt
 
-db = TinyDB('./backend/database/test-database.json', indent=2)
+db = TinyDB('./database/test-database.json', indent=2)
+
 
 users = db.table('users')
 history = db.table('history')
@@ -64,8 +65,8 @@ def verifyPassword(email, password):
         return None
 
     if bcrypt.checkpw(password.encode("utf-8"), user["password"].encode("utf-8")):
-        return ("vous êtes autorisé a écrire")   # OK
-    return ("il n'ya aucun utilisateur a ce nom")      # non
+        return user   # OK
+    return None     # non
 
 
 

@@ -20,6 +20,13 @@
       "password": "$2b$12$djEJ7gFnI5ElP7Va/Vzg2ueZxipdXR4f.08Y2fcN5rvl0PBmjf9HS",
       "name": "test",
       "surname": "test"
+    },
+    "4": {
+      "id": 4,
+      "email": "nabil.gha@gmail.com",
+      "password": "$2b$12$fg.dFwbOcuWZ.0BmxNNIOOqhj5zNqKTvvC7/UPzc33aUckyTvQvbq",
+      "name": "nabil",
+      "surname": "ghadab"
     }
   },
   "history": {
