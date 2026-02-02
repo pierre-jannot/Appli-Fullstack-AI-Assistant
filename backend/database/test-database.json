@@ -1,0 +1,24 @@
+{
+  "users": {
+    "1": {
+      "id": 1,
+      "email": "test.email@tinydb.com",
+      "password": "password",
+      "name": "Will",
+      "surname": "Smith"
+    }
+  },
+  "history": {
+    "1": {
+      "id": 1,
+      "history": [
+        {
+          "idprompt": 1,
+          "prompt": "Bonjour",
+          "answer": "Au revoir",
+          "time": "2026-02-02-11-40"
+        }
+      ]
+    }
+  }
+}
