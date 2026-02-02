@@ -1,5 +1,10 @@
 # Appli-Fullstack-AI-Assistant
 
+## Installation des dépendances
+
+### TinyDB
+python -m pip install tinydb
+
 ## Structure du JSON :
 
 Objet utilisateur :
