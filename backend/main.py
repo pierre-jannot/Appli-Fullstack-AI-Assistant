@@ -26,7 +26,6 @@ class HistoryBody(BaseModel):
     prompt:str
     answer:str
 
-
 ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
 load_dotenv(dotenv_path=ENV_PATH)
 
