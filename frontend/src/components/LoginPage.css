@@ -1,0 +1,12 @@
+.login-form, .register-form {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.register-login-toggler:hover {
+    cursor: pointer;
+}
+
+#submit-button {
+    margin-top: 10px;
+}
