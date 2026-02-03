@@ -1,8 +1,19 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 import uvicorn
+from pathlib import Path
+from dotenv import load_dotenv
+from decode import create_token
+
+
+ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(dotenv_path=ENV_PATH)
+
 import database
 import decode
+
+
+
 
 #Basemodel:
 
@@ -16,7 +27,7 @@ class RegisterBody(BaseModel):
     name : str
     surname : str
 
-class JHistoryBody(BaseModel):
+class HistoryBody(BaseModel):
     prompt:str
     answer:str
 
@@ -36,14 +47,12 @@ def login(body: LoginBody):
     if not user:
         raise HTTPException(status_code=401, detail="email ou mdp invalide")
     
-    return {"id": user["id"],
-            "email": user["email"],
-            "name" : user["name"],
-            "surname": user["surname"]
-            }
+    token = create_token(user["id"])
+    return {"access_token": token}
+
 
 @app.post("/register")
-def register(body: registerBody):
+def register(body: RegisterBody):
     user = database.addUser(email=body.email, password=body.password, name=body.name, surname=body.surname)
 
     if not user:
@@ -52,8 +61,8 @@ def register(body: registerBody):
     return ("l'utilisateur a été ajouté avec succès")
 
 @app.post("/history")
-def writeHistory(body:historyBody):
-    user = database.addHistory(id=, prompt=body.prompt, answer=body.answer)
+def writeHistory(body:HistoryBody,  user_id: int = Depends(decode.get_current_user_id)):
+    user = database.addHistory(user_id, prompt=body.prompt, answer=body.answer)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
