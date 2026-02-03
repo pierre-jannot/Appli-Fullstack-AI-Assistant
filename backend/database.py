@@ -1,7 +1,8 @@
 from tinydb import TinyDB, Query
 from datetime import datetime
 import bcrypt
-
+import uuid
+import model
 db = TinyDB('./database/test-database.json', indent=2)
 
 
@@ -10,20 +11,20 @@ history = db.table('history')
 User = Query()
 
 # Fonction d'ajout d'utilisateur à la base de données
-def addUser(email,password,name,surname):
-    emailCheck = users.search(User.email == email)
+def addUser(body:model.RegisterBody):
+    emailCheck = users.search(User.email == body.email)
     if not users.all():
         id = 1
     else:
-        id = max(user['id'] for user in users.all()) + 1
+        id = str(uuid.uuid4())
     if not emailCheck:
         users.insert(
             {
                 "id":id,
-                "email":email,
-                "password":bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt()).decode(),
-                "name":name,
-                "surname":surname
+                "email":body.email,
+                "password":bcrypt.hashpw(body.password.encode('utf-8'),bcrypt.gensalt()).decode(),
+                "name":body.name,
+                "surname":body.surname
             }
         )
         print("User added successfully.")
@@ -33,12 +34,12 @@ def addUser(email,password,name,surname):
         return False
     
 # Fonction d'ajout d'historique à la base de données
-def addHistory(id,prompt,answer):
+def addHistory(id,body:model.HistoryBody):
     userCheck = users.search(User.id == id)
     newPrompt = {
                 "idprompt": 1,
-                "prompt": prompt,
-                "answer": answer,
+                "prompt": body.prompt,
+                "answer": body.answer,
                 "time" : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
     if userCheck:
@@ -59,15 +60,14 @@ def addHistory(id,prompt,answer):
         print("No user with this id.")
         return False
 
-def verifyPassword(email, password):
-    user = users.get(User.email == email)
+def verifyPassword(body:model.LoginBody):
+    user = users.get(User.email == body.email)
     if not user:
         return None
 
-    if bcrypt.checkpw(password.encode("utf-8"), user["password"].encode("utf-8")):
+    if bcrypt.checkpw(body.password.encode("utf-8"), user["password"].encode("utf-8")):
         return user   # OK
-    return None     # non
-
+    return None     # no
 
 
 #Commandes de test
@@ -78,4 +78,3 @@ def verifyPassword(email, password):
 # addHistory(1,"prompt","answer")
 # addHistory(1,"prompt2","answer2")
 # addHistory(12,"prompt","answer")
-print(verifyPassword("test2","test"))

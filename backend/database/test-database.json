@@ -84,6 +84,18 @@
           "prompt": "prompt2",
           "answer": "answer2",
           "time": "2026-02-02 16:31:38"
+        },
+        {
+          "idprompt": 5,
+          "prompt": "string",
+          "answer": "string",
+          "time": "2026-02-03 11:25:04"
+        },
+        {
+          "idprompt": 6,
+          "prompt": "string",
+          "answer": "string",
+          "time": "2026-02-03 11:25:05"
         }
       ]
     }
