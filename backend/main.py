@@ -2,10 +2,16 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Depends
 import uvicorn
+
 from pathlib import Path
 from dotenv import load_dotenv
 from decode import create_token
+ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
+load_dotenv(dotenv_path=ENV_PATH)
 from pydantic import BaseModel
+from ai_client import ask_ai
+
+
 
 
 
@@ -25,6 +31,9 @@ class HistoryBody(BaseModel):
    
     prompt:str
     answer:str
+
+class ChatBody(BaseModel):
+    message: str
 
 
 
@@ -76,6 +85,12 @@ def register(body: RegisterBody):
 @app.post("/history")
 def writeHistory(body:HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
     user = database.addHistory(user_id, prompt=body.prompt, answer=body.answer)
+
+@app.post("/chat")
+def chat(body: ChatBody):
+    answer = ask_ai(body.message)
+    return {"answer": answer}
+
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
