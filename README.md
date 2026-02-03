@@ -20,6 +20,9 @@ python -m pip install jwt
 ### PYJWT
 python -m pip install pyjwt
 
+### LLM OPENAI
+python -m pip install openai
+
 ## Lancement de React dans frontend :
 
 npm run dev
