@@ -55,6 +55,20 @@
       "password": "$2b$12$5LodyAO4IC.iIQgvCHAOv.Am0V1AsS/g77/6sLMZLJkNHDtLh41FO",
       "name": "Test",
       "surname": "Test"
+    },
+    "9": {
+      "id": "a627cf68-9c99-4fd6-9c5a-34261d20a719",
+      "email": "testmail@test",
+      "password": "$2b$12$XkvE29cSUl/.a7GTlJ9PCe0BJO3.H.hAS/GFDJ.h2MgjyeS.0SUwG",
+      "name": "Test",
+      "surname": "Test"
+    },
+    "10": {
+      "id": "8061c141-b21e-4013-bbda-09554f0b596e",
+      "email": "test3@test.fr",
+      "password": "$2b$12$cWgWjvcIZ2D7.9QMVARQLOssk1zCzOkKVUag1qhQxDDo/Kx43EHPy",
+      "name": "Test",
+      "surname": "Test"
     }
   },
   "history": {
