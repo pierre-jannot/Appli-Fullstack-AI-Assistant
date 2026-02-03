@@ -1,3 +1,5 @@
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Depends
 import backend.model as model
 import uvicorn
@@ -13,6 +15,18 @@ import database
 import decode
 
 app=FastAPI()
+
+origins = [
+    "http://localhost:5173"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],   # ← accepte GET, POST, OPTIONS, etc.
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def root():
@@ -37,7 +51,7 @@ def register(body: model.RegisterBody):
         raise HTTPException(status_code=409, detail="email déja utilisé")
 
     return ("l'utilisateur a été ajouté avec succès")
-
+  
 @app.post("/history")
 def writeHistory(body: model.HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
     user = database.addHistory(user_id, prompt=body.prompt, answer=body.answer)

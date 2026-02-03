@@ -3,7 +3,10 @@
 ## Installation des dépendances
 
 ### React Vite - lancement dans frontend
-npm install
+npm install vite
+
+### React Router Dom - lancement dans le frontend
+npm install react-router-dom
 
 ### TinyDB
 python -m pip install tinydb

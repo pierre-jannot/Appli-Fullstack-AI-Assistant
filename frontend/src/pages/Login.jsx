@@ -1,11 +1,18 @@
-import { useState, useEffect } from "react"
-import { Login } from "./Login"
-import './LoginPage.css'
+import { useState } from "react"
+import './Login.css'
 
-export function LoginPage(){
+export function Login({toggleLogged}){
     const [register,setRegister] = useState(false);
     const [registerData,setRegisterData] = useState({email:'', password:'', name:'', surname:''});
     const [loginData,setLoginData] = useState({email:'', password:''});
+
+    const removeRegisterData = () => {
+        setRegisterData({email:'', password:'', name:'', surname:''});
+    }
+
+    const removeLoginData = () => {
+        setLoginData({email:'', password:''});
+    }
 
     const toggleRegister = () => {
         setRegister(prev => !prev);
@@ -21,11 +28,50 @@ export function LoginPage(){
         setLoginData({...loginData, [name]: value});
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Formulaire envoyé")
-        console.log(registerData)
-        console.log(loginData)
+        try {
+            let response;
+            if(!register){
+                response = await fetch("http://localhost:8000/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(loginData)
+                });
+            }
+            else{
+                response = await fetch("http://localhost:8000/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(registerData)
+                });
+            }
+
+        const data = await response.json();
+        console.log("Réponse du serveur :", data);
+
+        if (response.ok) {
+            if (register) {
+                removeRegisterData();
+                alert("Création de compte réussie !");
+            } else {
+                removeLoginData();
+                alert("Connexion réussie !");
+                toggleLogged(); 
+            }
+        } else {
+            if (register) {
+                alert("Erreur dans la création du compte.")
+            } else {
+                alert("L'identifiant ou le mot de passe est erroné.")
+            }
+        }
+
+        } catch (error) {
+            console.error("Erreur fetch :", error);
+            alert("Impossible de se connecter.");
+        }
     }
 
     return (

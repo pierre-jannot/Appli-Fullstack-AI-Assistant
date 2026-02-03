@@ -1,21 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from "react"
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate} from "react-router-dom"
 import './App.css'
 
-import { LoginPage } from './components/LoginPage.jsx'
+import { Login } from './pages/Login'
 
 function App() {
-  const [logged, setLogged] = useState(false)
+  const [logged,setLogged] = useState(false);
+  const navigate = useNavigate();
 
   const toggleLogged = () => {
     setLogged(prev => !prev);
+    navigate("/");
   }
 
   return (
-    <>
-      {!logged && (<LoginPage></LoginPage>)}
-    </>
+      <Routes>
+        <Route path="/" element={<Navigate to={!logged ? "/login" : "/home"}/>}/>
+        <Route path="/login" element={<Login toggleLogged={toggleLogged}/>}/>
+        <Route path="home" element={<h1 onClick={toggleLogged}>Se déconnecter</h1>}/>
+      </Routes>
   )
 }
 
