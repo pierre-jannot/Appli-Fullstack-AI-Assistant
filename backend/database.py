@@ -2,6 +2,7 @@ from tinydb import TinyDB, Query
 from datetime import datetime
 import bcrypt
 import uuid
+import modele
 db = TinyDB('./database/test-database.json', indent=2)
 
 
@@ -10,8 +11,8 @@ history = db.table('history')
 User = Query()
 
 # Fonction d'ajout d'utilisateur à la base de données
-def addUser(email,password,name,surname):
-    emailCheck = users.search(User.email == email)
+def addUser(body:modele.RegisterBody):
+    emailCheck = users.search(User.email == modele.RegisterBody.email)
     if not users.all():
         id = 1
     else:
@@ -20,10 +21,10 @@ def addUser(email,password,name,surname):
         users.insert(
             {
                 "id":id,
-                "email":email,
-                "password":bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt()).decode(),
-                "name":name,
-                "surname":surname
+                "email":modele.RegisterBody.email,
+                "password":bcrypt.hashpw(modele.RegisterBody.password.encode('utf-8'),bcrypt.gensalt()).decode(),
+                "name":modele.RegisterBody.name,
+                "surname":modele.RegisterBody.surname
             }
         )
         print("User added successfully.")
@@ -33,12 +34,12 @@ def addUser(email,password,name,surname):
         return False
     
 # Fonction d'ajout d'historique à la base de données
-def addHistory(id,prompt,answer):
+def addHistory(id,body:modele.HistoryBody):
     userCheck = users.search(User.id == id)
     newPrompt = {
                 "idprompt": 1,
-                "prompt": prompt,
-                "answer": answer,
+                "prompt": modele.HistoryBody.prompt,
+                "answer": modele.HistoryBody.answer,
                 "time" : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
     if userCheck:
@@ -59,12 +60,12 @@ def addHistory(id,prompt,answer):
         print("No user with this id.")
         return False
 
-def verifyPassword(email, password):
-    user = users.get(User.email == email)
+def verifyPassword(body:modele.LoginBody):
+    user = users.get(User.email == modele.LoginBody.email)
     if not user:
         return None
 
-    if bcrypt.checkpw(password.encode("utf-8"), user["password"].encode("utf-8")):
+    if bcrypt.checkpw(modele.LoginBody.password.encode("utf-8"), user["password"].encode("utf-8")):
         return user   # OK
     return None     # no
 

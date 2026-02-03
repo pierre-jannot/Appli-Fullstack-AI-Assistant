@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, Depends
-from pydantic import BaseModel
+import modele
 import uvicorn
 from pathlib import Path
 from dotenv import load_dotenv
@@ -12,37 +12,14 @@ load_dotenv(dotenv_path=ENV_PATH)
 import database
 import decode
 
-
-
-
-#Basemodel:
-
-class LoginBody(BaseModel):
-    email : str
-    password : str
-
-class RegisterBody(BaseModel):
-    email:str
-    password:str
-    name : str
-    surname : str
-
-class HistoryBody(BaseModel):
-   
-    prompt:str
-    answer:str
-
-
 app=FastAPI()
 
 @app.get("/")
 def root():
     return {"salut"}
 
-
-
 @app.post("/login")
-def login(body: LoginBody):
+def login(body: modele.LoginBody):
     user = database.verifyPassword(body.email,body.password)
 
     if not user:
@@ -53,7 +30,7 @@ def login(body: LoginBody):
 
 
 @app.post("/register")
-def register(body: RegisterBody):
+def register(body: modele.RegisterBody):
     user = database.addUser(email=body.email, password=body.password, name=body.name, surname=body.surname)
 
     if not user:
@@ -62,7 +39,7 @@ def register(body: RegisterBody):
     return ("l'utilisateur a été ajouté avec succès")
 
 @app.post("/history")
-def writeHistory(body:HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
+def writeHistory(body: modele.HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
     user = database.addHistory(user_id, prompt=body.prompt, answer=body.answer)
 
 if __name__ == "__main__":
