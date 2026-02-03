@@ -6,6 +6,9 @@ import model
 db = TinyDB('./database/test-database.json', indent=2)
 
 
+
+
+
 users = db.table('users')
 history = db.table('history')
 User = Query()

@@ -1,20 +1,17 @@
-from pydantic import BaseModel
-
-
 
 #Basemodel:
 
-class LoginBody(BaseModel):
+class LoginBody:
     email : str
     password : str
 
-class RegisterBody(BaseModel):
+class RegisterBody:
     email:str
     password:str
     name : str
     surname : str
 
-class HistoryBody(BaseModel):
+class HistoryBody:
    
     prompt:str
     answer:str

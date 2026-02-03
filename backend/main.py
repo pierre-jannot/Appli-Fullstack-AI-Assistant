@@ -1,11 +1,31 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Depends
-import backend.model as model
 import uvicorn
 from pathlib import Path
 from dotenv import load_dotenv
 from decode import create_token
+from pydantic import BaseModel
+
+
+
+#Basemodel:
+
+class LoginBody(BaseModel):
+    email : str
+    password : str
+
+class RegisterBody(BaseModel):
+    email:str
+    password:str
+    name : str
+    surname : str
+
+class HistoryBody(BaseModel):
+   
+    prompt:str
+    answer:str
+
 
 
 ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
@@ -17,7 +37,8 @@ import decode
 app=FastAPI()
 
 origins = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "http://localhost:8000"
 ]
 
 app.add_middleware(
@@ -33,8 +54,8 @@ def root():
     return {"salut"}
 
 @app.post("/login")
-def login(body: model.LoginBody):
-    user = database.verifyPassword(body.email,body.password)
+def login(body:LoginBody):
+    user = database.verifyPassword(body)
 
     if not user:
         raise HTTPException(status_code=401, detail="email ou mdp invalide")
@@ -44,7 +65,7 @@ def login(body: model.LoginBody):
 
 
 @app.post("/register")
-def register(body: model.RegisterBody):
+def register(body: RegisterBody):
     user = database.addUser(email=body.email, password=body.password, name=body.name, surname=body.surname)
 
     if not user:
@@ -53,7 +74,7 @@ def register(body: model.RegisterBody):
     return ("l'utilisateur a été ajouté avec succès")
   
 @app.post("/history")
-def writeHistory(body: model.HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
+def writeHistory(body:HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
     user = database.addHistory(user_id, prompt=body.prompt, answer=body.answer)
 
 if __name__ == "__main__":
