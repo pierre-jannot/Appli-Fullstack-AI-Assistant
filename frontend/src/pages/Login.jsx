@@ -1,7 +1,7 @@
 import { useState } from "react"
 import './Login.css'
 
-export function Login(){
+export function Login({toggleLogged}){
     const [register,setRegister] = useState(false);
     const [registerData,setRegisterData] = useState({email:'', password:'', name:'', surname:''});
     const [loginData,setLoginData] = useState({email:'', password:''});
@@ -37,14 +37,14 @@ export function Login(){
                 response = await fetch("http://localhost:8000/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(loginData),
+                    body: JSON.stringify(loginData)
                 });
             }
             else{
                 response = await fetch("http://localhost:8000/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(registerData),
+                    body: JSON.stringify(registerData)
                 });
             }
 
@@ -57,7 +57,8 @@ export function Login(){
                 alert("Création de compte réussie !");
             } else {
                 removeLoginData();
-                alert("Connexion réussie !")   
+                alert("Connexion réussie !");
+                toggleLogged(); 
             }
         } else {
             if (register) {
@@ -67,10 +68,10 @@ export function Login(){
             }
         }
 
-    } catch (error) {
-        console.error("Erreur fetch :", error);
-        alert("Impossible de se connecter.");
-    }
+        } catch (error) {
+            console.error("Erreur fetch :", error);
+            alert("Impossible de se connecter.");
+        }
     }
 
     return (
