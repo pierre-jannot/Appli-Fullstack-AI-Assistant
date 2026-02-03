@@ -28,6 +28,10 @@ export function Login({toggleLogged}){
         setLoginData({...loginData, [name]: value});
     }
 
+    const setToken = (token) => {
+        localStorage.setItem("token", token);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Formulaire envoyé")
@@ -58,8 +62,10 @@ export function Login({toggleLogged}){
             } else {
                 removeLoginData();
                 alert("Connexion réussie !");
-                toggleLogged(); 
             }
+            const jwt = data.access_token;
+            setToken(jwt);
+            toggleLogged(); 
         } else {
             if (register) {
                 alert("Erreur dans la création du compte.")

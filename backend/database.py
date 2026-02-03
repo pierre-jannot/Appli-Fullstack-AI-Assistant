@@ -31,7 +31,7 @@ def addUser(body:model.RegisterBody):
             }
         )
         print("User added successfully.")
-        return True
+        return users.search(User.id == id)[0]
     else:
         print("This email is already taken.")
         return False

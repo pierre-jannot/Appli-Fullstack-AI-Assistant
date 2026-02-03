@@ -11,10 +11,6 @@ load_dotenv(dotenv_path=ENV_PATH)
 from pydantic import BaseModel
 from ai_client import ask_ai
 
-
-
-
-
 #Basemodel:
 
 class LoginBody(BaseModel):
@@ -34,7 +30,6 @@ class HistoryBody(BaseModel):
 
 class ChatBody(BaseModel):
     message: str
-
 
 
 ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
@@ -72,15 +67,15 @@ def login(body:LoginBody):
     token = create_token(user["id"])
     return {"access_token": token}
 
-
 @app.post("/register")
 def register(body: RegisterBody):
     user = database.addUser(body)
 
     if not user:
         raise HTTPException(status_code=409, detail="email déja utilisé")
-
-    return ("l'utilisateur a été ajouté avec succès")
+    
+    token = create_token(user["id"])
+    return {"access_token": token}
   
 @app.post("/history")
 def writeHistory(body:HistoryBody, user_id: int = Depends(decode.get_current_user_id)):

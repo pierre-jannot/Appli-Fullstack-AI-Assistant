@@ -9,6 +9,9 @@ function App() {
   const navigate = useNavigate();
 
   const toggleLogged = () => {
+    if (logged){
+      localStorage.removeItem("token");
+    }
     setLogged(prev => !prev);
     navigate("/");
   }
