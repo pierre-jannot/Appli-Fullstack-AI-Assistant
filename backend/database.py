@@ -1,7 +1,7 @@
 from tinydb import TinyDB, Query
 from datetime import datetime
 import bcrypt
-
+import uuid
 db = TinyDB('./database/test-database.json', indent=2)
 
 
@@ -15,7 +15,7 @@ def addUser(email,password,name,surname):
     if not users.all():
         id = 1
     else:
-        id = max(user['id'] for user in users.all()) + 1
+        id = str(uuid.uuid4())
     if not emailCheck:
         users.insert(
             {
@@ -66,8 +66,7 @@ def verifyPassword(email, password):
 
     if bcrypt.checkpw(password.encode("utf-8"), user["password"].encode("utf-8")):
         return user   # OK
-    return None     # non
-
+    return None     # no
 
 
 #Commandes de test
@@ -78,4 +77,3 @@ def verifyPassword(email, password):
 # addHistory(1,"prompt","answer")
 # addHistory(1,"prompt2","answer2")
 # addHistory(12,"prompt","answer")
-print(verifyPassword("test2","test"))

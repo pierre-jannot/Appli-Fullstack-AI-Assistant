@@ -28,6 +28,7 @@ class RegisterBody(BaseModel):
     surname : str
 
 class HistoryBody(BaseModel):
+   
     prompt:str
     answer:str
 
@@ -61,7 +62,7 @@ def register(body: RegisterBody):
     return ("l'utilisateur a été ajouté avec succès")
 
 @app.post("/history")
-def writeHistory(body:HistoryBody,  user_id: int = Depends(decode.get_current_user_id)):
+def writeHistory(body:HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
     user = database.addHistory(user_id, prompt=body.prompt, answer=body.answer)
 
 if __name__ == "__main__":
