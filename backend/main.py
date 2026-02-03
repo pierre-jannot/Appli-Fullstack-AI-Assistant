@@ -86,5 +86,14 @@ def register(body: RegisterBody):
 def writeHistory(body:HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
     user = database.addHistory(user_id, body)
 
+@app.post("/chat")
+def chat(body: ChatBody):
+    try:
+        answer = ask_ai(body.message)
+        return {"answer": answer}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
