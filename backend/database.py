@@ -12,7 +12,7 @@ User = Query()
 
 # Fonction d'ajout d'utilisateur à la base de données
 def addUser(body:modele.RegisterBody):
-    emailCheck = users.search(User.email == modele.RegisterBody.email)
+    emailCheck = users.search(User.email == body.email)
     if not users.all():
         id = 1
     else:
@@ -21,10 +21,10 @@ def addUser(body:modele.RegisterBody):
         users.insert(
             {
                 "id":id,
-                "email":modele.RegisterBody.email,
-                "password":bcrypt.hashpw(modele.RegisterBody.password.encode('utf-8'),bcrypt.gensalt()).decode(),
-                "name":modele.RegisterBody.name,
-                "surname":modele.RegisterBody.surname
+                "email":body.email,
+                "password":bcrypt.hashpw(body.password.encode('utf-8'),bcrypt.gensalt()).decode(),
+                "name":body.name,
+                "surname":body.surname
             }
         )
         print("User added successfully.")
@@ -38,8 +38,8 @@ def addHistory(id,body:modele.HistoryBody):
     userCheck = users.search(User.id == id)
     newPrompt = {
                 "idprompt": 1,
-                "prompt": modele.HistoryBody.prompt,
-                "answer": modele.HistoryBody.answer,
+                "prompt": body.prompt,
+                "answer": body.answer,
                 "time" : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
     if userCheck:
@@ -61,11 +61,11 @@ def addHistory(id,body:modele.HistoryBody):
         return False
 
 def verifyPassword(body:modele.LoginBody):
-    user = users.get(User.email == modele.LoginBody.email)
+    user = users.get(User.email == body.email)
     if not user:
         return None
 
-    if bcrypt.checkpw(modele.LoginBody.password.encode("utf-8"), user["password"].encode("utf-8")):
+    if bcrypt.checkpw(body.password.encode("utf-8"), user["password"].encode("utf-8")):
         return user   # OK
     return None     # no
 
