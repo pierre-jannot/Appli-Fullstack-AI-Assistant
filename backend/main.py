@@ -64,7 +64,7 @@ def login(body:LoginBody):
 
 @app.post("/register")
 def register(body: RegisterBody):
-    user = database.addUser(email=body.email, password=body.password, name=body.name, surname=body.surname)
+    user = database.addUser(body)
 
     if not user:
         raise HTTPException(status_code=409, detail="email déja utilisé")
@@ -73,7 +73,7 @@ def register(body: RegisterBody):
   
 @app.post("/history")
 def writeHistory(body:HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
-    user = database.addHistory(user_id, prompt=body.prompt, answer=body.answer)
+    user = database.addHistory(user_id, body)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
