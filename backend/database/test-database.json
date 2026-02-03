@@ -55,6 +55,13 @@
       "password": "$2b$12$5LodyAO4IC.iIQgvCHAOv.Am0V1AsS/g77/6sLMZLJkNHDtLh41FO",
       "name": "Test",
       "surname": "Test"
+    },
+    "9": {
+      "id": "a627cf68-9c99-4fd6-9c5a-34261d20a719",
+      "email": "testmail@test",
+      "password": "$2b$12$XkvE29cSUl/.a7GTlJ9PCe0BJO3.H.hAS/GFDJ.h2MgjyeS.0SUwG",
+      "name": "Test",
+      "surname": "Test"
     }
   },
   "history": {
