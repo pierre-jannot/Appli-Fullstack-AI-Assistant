@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from decode import create_token
 
 
-ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
+ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
 load_dotenv(dotenv_path=ENV_PATH)
 
 import database
