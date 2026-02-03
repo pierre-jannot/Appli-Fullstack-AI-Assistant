@@ -1,52 +1,58 @@
 import { useState, useEffect } from "react"
-import './Login.css'
 
-export function Login(){
-    const [register,setRegister] = useState(false);
+export function Login(formData){
+    const [error, setError] = useState(null);
 
-    const toggleRegister = () => {
-        setRegister(prev => !prev);
-    }
+    useEffect(() => {
+        const load = async() => {
+            setError(null);
+            try{
+                let body;
+                if(register=="register"){
+                    body = JSON.stringify({
+                        "email":formData.email,
+                        "password":formData.password,
+                        "name":formData.name,
+                        "surname":formData.surname
+                    })
+                }
+                else if (register=="login"){
+                    body = JSON.stringify({
+                        "email":formData.email,
+                        "password":formData.password,
+                    })
+                }
+                let res = await fetch(`/${register}`,
+                    {
+                        method: "POST",
+                        headers: {"Content-type": "application/json"},
+                        body: body
+                    }
+                )
+                const text = await res.text();
+                let data;
 
-    return (
-        <>
-            {!register &&(
-                <section id="login">
-                    <h1>Connexion</h1>
-                    <form className="login-form">
-                        <label for="email">Identifiant : </label>
-                        <input type="email" id="email" placeholder="Adresse mail" maxLength={254} required
-                        title="Merci d'utiliser une adresse mail valide."></input>
-                        <label for="password">Mot de passe : </label>
-                        <input type="password" id="password" placeholder="Mot de passe" pattern=".{12,72}" minLength={12} maxLength={72} required
-                        title="Votre mot de passe est composé d'au moins 12 caractères."></input>
-                        <button type="submit">Se connecter</button>
-                    </form>
-                    <p className="register-login-toggler" onClick={toggleRegister}>Première connexion ? Cliquez ici pour créer un compte</p>
-                </section>
-            )}
-            {register &&(
-                <section id="register">
-                    <h1>S'inscrire</h1>
-                    <form className="register-form">
-                        <label for="email">Identifiant : </label>
-                        <input type="email" id="email" placeholder="Adresse mail" maxLength={254} required
-                        title="Merci d'utiliser une adresse mail valide."></input>
-                        <label for="password">Mot de passe : </label>
-                        <input type="password" id="password" placeholder="Mot de passe" pattern=".{12,72}" minLength={12} maxLength={72} required
-                        title="Votre mot de passe doit être composé d'au moins 12 caractères."></input>
-                        <label for="name">Prénom : </label>
-                        <input type="text" id="name" placeholder="Prénom" minLength={3} maxLength={50} required></input>
-                        <label for="surname">Nom : </label>
-                        <input type="text" id="surname" placeholder="Nom" minLength={3} maxLength={50} required></input>
-                        <button type="submit">S'inscrire</button>
-                    </form>
-                    <p className="register-login-toggler" onClick={toggleRegister}>Déjà un compte ? Cliquez ici pour vous connecter</p>
-                </section>
-            )}
-                    
-                    
+                try {
+                    data = text ? JSON.parse(text) : null;
+                } catch {
+                    data = null;
+                }
 
-        </>
-    )
+                if (!res.ok) {
+                    const err = data
+                    ? `Code: ${data.code || res.status} - Message: ${data.detail || data.message}`
+                    : `Erreur serveur (${res.status})`;
+                    throw new Error(err);
+                }
+
+                console.log(data);
+            }
+            catch(err) {
+                console.error(err);
+                const error = `${err.message}`;
+                setError(error);
+            }
+        };
+    },[]
+);
 }

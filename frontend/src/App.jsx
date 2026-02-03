@@ -3,14 +3,18 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-import { Login } from './components/Login.jsx'
+import { LoginPage } from './components/LoginPage.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [logged, setLogged] = useState(false)
+
+  const toggleLogged = () => {
+    setLogged(prev => !prev);
+  }
 
   return (
     <>
-      <Login></Login>
+      {!logged && (<LoginPage></LoginPage>)}
     </>
   )
 }
