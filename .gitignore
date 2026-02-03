@@ -1,3 +1,5 @@
 # secrets (ignore uniquement les fichiers env)
 .env
 *.env
+
+__pycache__/

@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
 import database
@@ -23,6 +24,18 @@ class JHistoryBody(BaseModel):
 
 app=FastAPI()
 
+origins = [
+    "http://localhost:5173"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],   # ← accepte GET, POST, OPTIONS, etc.
+    allow_headers=["*"],
+)
+
 @app.get("/")
 def root():
     return {"salut"}
@@ -43,7 +56,7 @@ def login(body: LoginBody):
             }
 
 @app.post("/register")
-def register(body: registerBody):
+def register(body: RegisterBody):
     user = database.addUser(email=body.email, password=body.password, name=body.name, surname=body.surname)
 
     if not user:
@@ -51,9 +64,9 @@ def register(body: registerBody):
 
     return ("l'utilisateur a été ajouté avec succès")
 
-@app.post("/history")
-def writeHistory(body:historyBody):
-    user = database.addHistory(id=, prompt=body.prompt, answer=body.answer)
+# @app.post("/history")
+# def writeHistory(body:historyBody):
+#     user = database.addHistory(id=, prompt=body.prompt, answer=body.answer)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)

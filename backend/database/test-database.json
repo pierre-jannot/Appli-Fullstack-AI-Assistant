@@ -2,7 +2,7 @@
   "users": {
     "1": {
       "id": 1,
-      "email": "test",
+      "email": "test@test",
       "password": "$2b$12$J/IjFFjloFvYBkJKaCuAbuGZiez075hDI9.Q5M8phkQeGeI1wT92O",
       "name": "test",
       "surname": "test"
@@ -27,6 +27,34 @@
       "password": "$2b$12$fg.dFwbOcuWZ.0BmxNNIOOqhj5zNqKTvvC7/UPzc33aUckyTvQvbq",
       "name": "nabil",
       "surname": "ghadab"
+    },
+    "5": {
+      "id": 5,
+      "email": "pierre.jannot@isen.yncrea.fr",
+      "password": "$2b$12$yzpmkkSIxyAtuk.yBqeD0.XznypZNsxN1ycwZVTt/KJlGoO3x8LJ.",
+      "name": "Pierre",
+      "surname": "Jannot"
+    },
+    "6": {
+      "id": 6,
+      "email": "test@test.fr",
+      "password": "$2b$12$1If7ixV91anlshKVq.PFpO9.IUMcNrsEbFf9.mrSjK5mac8WRPSrS",
+      "name": "test2",
+      "surname": "test2"
+    },
+    "7": {
+      "id": 7,
+      "email": "test2@test.fr",
+      "password": "$2b$12$XXAgcwAmnjKPlKSgpZl6C.l6uLV9wzlHeEA41yme929.w38PmjKU2",
+      "name": "test2",
+      "surname": "test2"
+    },
+    "8": {
+      "id": 8,
+      "email": "test3@test",
+      "password": "$2b$12$5LodyAO4IC.iIQgvCHAOv.Am0V1AsS/g77/6sLMZLJkNHDtLh41FO",
+      "name": "Test",
+      "surname": "Test"
     }
   },
   "history": {

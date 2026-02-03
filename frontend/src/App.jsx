@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-import { LoginPage } from './components/LoginPage.jsx'
+import { Login } from './components/Login.jsx'
 
 function App() {
   const [logged, setLogged] = useState(false)
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      {!logged && (<LoginPage></LoginPage>)}
+      {!logged && (<Login></Login>)}
     </>
   )
 }
