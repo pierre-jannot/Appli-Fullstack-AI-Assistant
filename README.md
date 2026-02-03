@@ -14,6 +14,12 @@ python -m pip install tinydb
 ### Bcrypt
 python -m pip install bcrypt
 
+### JWT
+python -m pip install jwt
+
+### PYJWT
+python -m pip install pyjwt
+
 ## Lancement de React dans frontend :
 
 npm run dev
