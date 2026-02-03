@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
 import database
+import decode
 
 #Basemodel:
 
@@ -9,11 +10,15 @@ class LoginBody(BaseModel):
     email : str
     password : str
 
-class registerBody(BaseModel):
+class RegisterBody(BaseModel):
     email:str
     password:str
     name : str
     surname : str
+
+class JHistoryBody(BaseModel):
+    prompt:str
+    answer:str
 
 
 app=FastAPI()
@@ -46,6 +51,9 @@ def register(body: registerBody):
 
     return ("l'utilisateur a été ajouté avec succès")
 
+@app.post("/history")
+def writeHistory(body:historyBody):
+    user = database.addHistory(id=, prompt=body.prompt, answer=body.answer)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
