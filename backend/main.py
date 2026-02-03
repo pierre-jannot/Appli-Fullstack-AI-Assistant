@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, Depends
-import modele
+import backend.model as model
 import uvicorn
 from pathlib import Path
 from dotenv import load_dotenv
@@ -19,7 +19,7 @@ def root():
     return {"salut"}
 
 @app.post("/login")
-def login(body: modele.LoginBody):
+def login(body: model.LoginBody):
     user = database.verifyPassword(body.email,body.password)
 
     if not user:
@@ -30,7 +30,7 @@ def login(body: modele.LoginBody):
 
 
 @app.post("/register")
-def register(body: modele.RegisterBody):
+def register(body: model.RegisterBody):
     user = database.addUser(email=body.email, password=body.password, name=body.name, surname=body.surname)
 
     if not user:
@@ -39,7 +39,7 @@ def register(body: modele.RegisterBody):
     return ("l'utilisateur a été ajouté avec succès")
 
 @app.post("/history")
-def writeHistory(body: modele.HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
+def writeHistory(body: model.HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
     user = database.addHistory(user_id, prompt=body.prompt, answer=body.answer)
 
 if __name__ == "__main__":

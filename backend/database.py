@@ -2,7 +2,7 @@ from tinydb import TinyDB, Query
 from datetime import datetime
 import bcrypt
 import uuid
-import modele
+import model
 db = TinyDB('./database/test-database.json', indent=2)
 
 
@@ -11,7 +11,7 @@ history = db.table('history')
 User = Query()
 
 # Fonction d'ajout d'utilisateur à la base de données
-def addUser(body:modele.RegisterBody):
+def addUser(body:model.RegisterBody):
     emailCheck = users.search(User.email == body.email)
     if not users.all():
         id = 1
@@ -34,7 +34,7 @@ def addUser(body:modele.RegisterBody):
         return False
     
 # Fonction d'ajout d'historique à la base de données
-def addHistory(id,body:modele.HistoryBody):
+def addHistory(id,body:model.HistoryBody):
     userCheck = users.search(User.id == id)
     newPrompt = {
                 "idprompt": 1,
@@ -60,7 +60,7 @@ def addHistory(id,body:modele.HistoryBody):
         print("No user with this id.")
         return False
 
-def verifyPassword(body:modele.LoginBody):
+def verifyPassword(body:model.LoginBody):
     user = users.get(User.email == body.email)
     if not user:
         return None
