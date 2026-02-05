@@ -25,8 +25,12 @@ python -m pip install pyjwt
 python -m pip install openai
 
 ## Lancement de React dans frontend :
-
+cd frontend
 npm run dev
+
+## Lancement de uvicorn dans le backend :
+cd backend
+python -m uvicorn main:app --reload
 
 ## Structure du JSON :
 
