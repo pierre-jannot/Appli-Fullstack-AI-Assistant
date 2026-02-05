@@ -1,10 +1,12 @@
 import { useState } from "react"
 import './Login.css'
+import { useNavigate } from "react-router-dom";
 
-export function Login({toggleLogged}){
+export function Login(){
     const [register,setRegister] = useState(false);
     const [registerData,setRegisterData] = useState({email:'', password:'', name:'', surname:''});
     const [loginData,setLoginData] = useState({email:'', password:''});
+    const navigate = useNavigate();
 
     const removeRegisterData = () => {
         setRegisterData({email:'', password:'', name:'', surname:''});
@@ -66,7 +68,7 @@ export function Login({toggleLogged}){
             }
             const jwt = data.access_token;
             setToken(jwt);
-            toggleLogged(); 
+            navigate("/aichat", {replace: true});
 
         } catch (error) {
             alert(error);

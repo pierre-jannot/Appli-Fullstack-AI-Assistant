@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function AIPromptInput({toggleLogged, toggleRefresh, prompt}){ 
+export function AIPromptInput({disconnect, toggleRefresh, prompt}){ 
     const [loading, setLoading] = useState(true)   
         useEffect(() => {
             const load = async () => {
@@ -21,7 +21,7 @@ export function AIPromptInput({toggleLogged, toggleRefresh, prompt}){
                     toggleRefresh();
                 } catch (error) {
                     alert(error);
-                    toggleLogged();
+                    disconnect();
                 } finally {
                     setLoading(false);
                 }

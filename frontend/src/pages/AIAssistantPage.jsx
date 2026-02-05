@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { AIPromptInput } from "../components/AIPromptInput";
+import { useNavigate, Navigate } from "react-router-dom";
 
-export function AIAssistantPage({toggleLogged}){
+export function AIAssistantPage(){
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [prompt, setPrompt] = useState("");
     const [submittedPrompt, setSubmittedPrompt] = useState(null);
     const [refresh, setRefresh] = useState(false);
+    const navigate = useNavigate();
 
     const toggleRefresh = () => {
         setRefresh(prev => !prev);
@@ -16,6 +18,11 @@ export function AIAssistantPage({toggleLogged}){
         e.preventDefault();
         setSubmittedPrompt(prompt);
         setPrompt("");
+    }
+
+    const disconnect = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
     }
 
     useEffect(() => {
@@ -42,7 +49,7 @@ export function AIAssistantPage({toggleLogged}){
                 }
             } catch (error) {
                 alert(error);
-                toggleLogged();
+                disconnect();
             } finally {
                 setLoading(false);
             }
@@ -54,7 +61,7 @@ export function AIAssistantPage({toggleLogged}){
 
     return (
         <>
-            <h3 onClick={toggleLogged}>Se déconnecter</h3>
+            <h3 onClick={disconnect}>Se déconnecter</h3>
             <h2>Assistant IA ChatGPT</h2>
             <ul>
                 {history.map(item => (
@@ -71,7 +78,7 @@ export function AIAssistantPage({toggleLogged}){
                 <button type="submit">Envoyer</button>
             </form>
             {submittedPrompt && (
-                <AIPromptInput toggleLogged={toggleLogged} toggleRefresh={toggleRefresh} prompt={submittedPrompt}/>
+                <AIPromptInput disconnect={disconnect} toggleRefresh={toggleRefresh} prompt={submittedPrompt}/>
             )}
         </>
     )

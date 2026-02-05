@@ -8,7 +8,7 @@ import decode
 from pathlib import Path
 from dotenv import load_dotenv
 from decode import create_token
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 from ai_client import ask_ai
 
 ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
@@ -32,11 +32,11 @@ app.add_middleware(
 #Basemodel:
 
 class LoginBody(BaseModel):
-    email : str = Field(..., min_length=5, max_length=254)
+    email : EmailStr = Field(..., min_length=5, max_length=254)
     password : str = Field(..., min_length=12, max_length=72)
 
 class RegisterBody(BaseModel):
-    email : str = Field(..., min_length=5, max_length=254)
+    email : EmailStr = Field(..., min_length=5, max_length=254)
     password : str = Field(..., min_length=12, max_length=72)
     name : str = Field(..., min_length=3, max_length=50)
     surname : str = Field(..., min_length=3, max_length=50)
@@ -55,7 +55,11 @@ def register(body: RegisterBody):
     user = database.addUser(body)
     token = create_token(user["id"])
     return {"access_token": token}
-  
+
+@app.get("/check-token")
+def checkToken(user_id: int = Depends(decode.get_current_user_id)):
+    return user_id
+
 @app.post("/history")
 def getHistory(user_id: int = Depends(decode.get_current_user_id)):
     history = database.getHistory(user_id)

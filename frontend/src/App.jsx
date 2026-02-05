@@ -4,24 +4,18 @@ import './App.css'
 
 import { Login } from './pages/Login'
 import { AIAssistantPage } from "./pages/AIAssistantPage";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
-  const [logged,setLogged] = useState(false);
-  const navigate = useNavigate();
-
-  const toggleLogged = () => {
-    if (logged){
-      localStorage.removeItem("token");
-    }
-    setLogged(prev => !prev);
-    navigate("/");
-  }
 
   return (
       <Routes>
-        <Route path="/" element={<Navigate to={!logged ? "/login" : "/aichat"}/>}/>
-        <Route path="/login" element={<Login toggleLogged={toggleLogged}/>}/>
-        <Route path="/aichat" element={<AIAssistantPage toggleLogged={toggleLogged}/>}/>
+        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />}/>
+        <Route path="/aichat" element={
+          <ProtectedRoute>
+            <AIAssistantPage />
+          </ProtectedRoute>}/>
       </Routes>
   )
 }
