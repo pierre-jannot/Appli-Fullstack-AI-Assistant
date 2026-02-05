@@ -12,10 +12,7 @@ User = Query()
 # Fonction d'ajout d'utilisateur à la base de données
 def addUser(body:model.RegisterBody):
     emailCheck = users.search(User.email == body.email)
-    if not users.all():
-        id = 1
-    else:
-        id = str(uuid.uuid4())
+    id = str(uuid.uuid4())
     if not emailCheck:
         users.insert(
             {
@@ -26,25 +23,22 @@ def addUser(body:model.RegisterBody):
                 "surname":body.surname
             }
         )
-        print("User added successfully.")
         return users.get(User.id == id)[0]
     else:
-        print("This email is already taken.")
-        return False
+        raise HTTPException(status_code=409, detail="L'email renseigné est déjà utilisé")
     
 # Fonction d'ajout d'historique à la base de données
 def addHistory(id,body:model.HistoryBody):
     userCheck = users.get(User.id == id)
     newPrompt = {
                 "idprompt": 1,
-                "prompt": body.prompt,
-                "answer": body.answer,
+                "prompt": body["prompt"],
+                "answer": body["answer"],
                 "time" : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
     if userCheck:
         userHistory = history.get(User.id == id)
         if userHistory:
-            userHistory = userHistory[0]
             newPrompt["idprompt"] = max(prompts["idprompt"] for prompts in userHistory["history"]) + 1
             updatedHistory = userHistory["history"] + [newPrompt]
             history.update({"history": updatedHistory}, User.id == id)
@@ -56,8 +50,7 @@ def addHistory(id,body:model.HistoryBody):
         print("History added successfully.")
         return True
     else:
-        print("No user with this id.")
-        return False
+        raise HTTPException(status_code=401, detail="L'id donné n'est pas affecté")
     
 def getHistory(id):
     userCheck = users.get(User.id == id)

@@ -47,7 +47,7 @@ class HistoryBody(BaseModel):
     answer:str
 
 class ChatBody(BaseModel):
-    message: str
+    prompt: str
 
 
 @app.get("/")
@@ -82,8 +82,8 @@ def getHistory(user_id: int = Depends(decode.get_current_user_id)):
 @app.post("/chat")
 def chat(body: ChatBody, user_id: int = Depends(decode.get_current_user_id)):
     try:
-        answer = ask_ai(body.message)
-        database.addHistory(user_id, {"prompt":body.message,"answer":answer})
+        answer = ask_ai(body.prompt)
+        database.addHistory(user_id, {"prompt":body.prompt,"answer":answer})
         return {"answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

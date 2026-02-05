@@ -8,13 +8,13 @@ def ask_ai(user_message: str) -> str:
 
     client = OpenAI(
         base_url="https://openrouter.ai/api/v1",
-        api_key=api_key,
+        api_key=api_key
     )
 
     model = os.getenv("OPENROUTER_MODEL", "z-ai/glm-4.5-air:free")
 
     resp = client.chat.completions.create(
         model=model,
-        messages=[{"role": "user", "content": user_message}],
+        messages=[{"role": "user", "content": user_message}]
     )
     return resp.choices[0].message.content

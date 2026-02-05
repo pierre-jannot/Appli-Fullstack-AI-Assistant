@@ -1,11 +1,26 @@
 import { useEffect, useState } from "react";
+import { AIPromptInput } from "../components/AIPromptInput";
 
 export function AIAssistantPage({toggleLogged}){
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [prompt, setPrompt] = useState("");
+    const [submittedPrompt, setSubmittedPrompt] = useState(null);
+    const [refresh, setRefresh] = useState(false);
+
+    const toggleRefresh = () => {
+        setRefresh(prev => !prev);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmittedPrompt(prompt);
+        setPrompt("");
+    }
 
     useEffect(() => {
         const load = async () => {
+            setSubmittedPrompt(null);
             try{
                 const response = await fetch("http://localhost:8000/history", {
                             method: "POST",
@@ -33,7 +48,7 @@ export function AIAssistantPage({toggleLogged}){
             }
         };
         load();
-    }, []);
+    }, [refresh]);
 
     if (loading) return <div>Chargement des conversations...</div>
 
@@ -49,6 +64,13 @@ export function AIAssistantPage({toggleLogged}){
                     </li>
                 ))}
             </ul>
+            <form onSubmit={handleSubmit}>
+                <input type="text" value={prompt} name="prompt" placeholder="Prompt"onChange={(e) => setPrompt(e.target.value)}/>
+                <button type="submit">Envoyer</button>
+            </form>
+            {submittedPrompt && (
+                <AIPromptInput toggleLogged={toggleLogged} toggleRefresh={toggleRefresh} prompt={submittedPrompt}/>
+            )}
         </>
     )
 }
