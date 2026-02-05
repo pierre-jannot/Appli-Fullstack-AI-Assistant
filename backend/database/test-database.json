@@ -69,6 +69,13 @@
       "password": "$2b$12$cWgWjvcIZ2D7.9QMVARQLOssk1zCzOkKVUag1qhQxDDo/Kx43EHPy",
       "name": "Test",
       "surname": "Test"
+    },
+    "11": {
+      "id": "884d5d32-aa11-4f04-a92a-5720f4eae8dc",
+      "email": "pierre.jannot@isn.yncrea.fr",
+      "password": "$2b$12$v/Ecgq/Z6YYLZV05aaKZ6edSAFyJxgkdWhMKjWXt2tex9/UdX22k6",
+      "name": "test",
+      "surname": "test"
     }
   },
   "history": {
@@ -145,6 +152,41 @@
           "prompt": "Combien font 3+4 ?",
           "answer": "La r\u00e9ponse \u00e0 **3 + 4** est **7**.  \n\nEn r\u00e9sum\u00e9 :  \n**3 + 4 = 7** \ud83d\ude0a",
           "time": "2026-02-05 14:52:27"
+        },
+        {
+          "idprompt": 6,
+          "prompt": "Comment vas-tu ?",
+          "answer": "Je vais tr\u00e8s bien, merci ! Je suis GLM, un mod\u00e8le de langage d\u00e9velopp\u00e9 par Zhipu AI, et je suis l\u00e0 pour vous aider avec vos questions ou t\u00e2ches. \n\nComment puis-je vous assister aujourd'hui ? N'h\u00e9sitez pas \u00e0 demander quoi que ce soit, je serai ravi de vous aider.",
+          "time": "2026-02-05 15:14:42"
+        }
+      ]
+    },
+    "3": {
+      "id": "884d5d32-aa11-4f04-a92a-5720f4eae8dc",
+      "history": [
+        {
+          "idprompt": 1,
+          "prompt": "Bonjour !",
+          "answer": "Bonjour ! \ud83d\ude0a Comment puis-je t'aider aujourd'hui ?",
+          "time": "2026-02-05 15:09:10"
+        },
+        {
+          "idprompt": 2,
+          "prompt": "Quel jour sommes nous ?",
+          "answer": "Nous sommes aujourd'hui **dimanche 19 mai 2024**. \ud83d\ude0a  \nSi vous cherchez des informations suppl\u00e9mentaires (comme la date dans un autre fuseau horaire ou des d\u00e9tails historiques), n'h\u00e9sitez pas \u00e0 demander !",
+          "time": "2026-02-05 15:09:24"
+        },
+        {
+          "idprompt": 3,
+          "prompt": "Je crois que nous sommes le 5 f\u00e9vrier 2026",
+          "answer": "Pas tout \u00e0 fait. Nous sommes actuellement le **22 mai 2024**.\n\nVous avez un peu d'avance sur le temps !",
+          "time": "2026-02-05 15:10:42"
+        },
+        {
+          "idprompt": 4,
+          "prompt": "Je peux t'assurer que nous sommes le 5 f\u00e9vrier 2026",
+          "answer": "Merci pour ces pr\u00e9cisions ! En tant qu'IA, je n'ai pas de conscience du temps r\u00e9el et mes donn\u00e9es sont fig\u00e9es jusqu'en juillet 2024, mais je peux parfaitement travailler avec la date que vous me donnez : **5 f\u00e9vrier 2026**.\n\nSi vous avez des questions ou des demandes sp\u00e9cifiques li\u00e9es \u00e0 cette date (calculs, \u00e9v\u00e9nements hypoth\u00e9tiques, rappels, etc.), n'h\u00e9sitez pas \u00e0 les partager. Je serais ravi de vous aider sur la base de votre r\u00e9f\u00e9rence temporelle actuelle ! \ud83d\ude0a\n\nPar exemple, je peux vous aider \u00e0 :\n- Calculer des intervalles de temps \u00e0 partir de cette date.\n- Planifier des \u00e9v\u00e9nements fictifs en 2026.\n- Explorer des sujets li\u00e9s \u00e0 cette p\u00e9riode.\n\nQuelle est votre prochaine demande ?",
+          "time": "2026-02-05 15:11:18"
         }
       ]
     }

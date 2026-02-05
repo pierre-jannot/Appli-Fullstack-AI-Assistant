@@ -5,7 +5,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from datetime import datetime, timedelta
 
 security = HTTPBearer()
-def create_token(user_id: int) -> str:
+def create_token(user_id) -> str:
     secret = os.getenv("SECRET_KEY")
     if not secret:
         raise RuntimeError("SECRET_KEY manquante")
@@ -37,12 +37,11 @@ def decode_token(token: str) :
 def get_current_user_id(
     credentials: HTTPAuthorizationCredentials = Depends(security)
 ):
-    token = credentials.credentials  # le texte après "Bearer "
+    token = credentials.credentials
     payload = decode_token(token)
 
-    # ton token peut contenir "id" ou "user_id"
     user_id = payload.get("id") or payload.get("user_id")
     if user_id is None:
         raise HTTPException(status_code=401, detail="Token sans id")
 
-    return int(user_id)
+    return user_id

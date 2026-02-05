@@ -23,7 +23,7 @@ def addUser(body:model.RegisterBody):
                 "surname":body.surname
             }
         )
-        return users.get(User.id == id)[0]
+        return users.get(User.id == id)
     else:
         raise HTTPException(status_code=409, detail="L'email renseigné est déjà utilisé")
     
@@ -47,8 +47,6 @@ def addHistory(id,body:model.HistoryBody):
                 "id":id,
                 "history": [newPrompt]
             })
-        print("History added successfully.")
-        return True
     else:
         raise HTTPException(status_code=401, detail="L'id donné n'est pas affecté")
     
@@ -65,19 +63,10 @@ def getHistory(id):
 
 def verifyPassword(body:model.LoginBody):
     user = users.get(User.email == body.email)
-    if not user:
-        return None
+    try:
+        bcrypt.checkpw(body.password.encode("utf-8"), user["password"].encode("utf-8"))
+        return user
+    except:
+        raise HTTPException(status_code=401, detail="L'email ou le mot de passe renseigné n'est pas valide.")
+    
 
-    if bcrypt.checkpw(body.password.encode("utf-8"), user["password"].encode("utf-8")):
-        return user   # OK
-    return None     # no
-
-
-#Commandes de test
-# addUser("test","test","test","test")
-# addUser("test","test","test","test")
-# addUser("test2","test","test","test")
-# addUser("test3","teste","test","test")
-# addHistory(1,"prompt","answer")
-# addHistory(1,"prompt2","answer2")
-# addHistory(12,"prompt","answer")

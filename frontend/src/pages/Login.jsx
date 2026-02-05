@@ -34,7 +34,6 @@ export function Login({toggleLogged}){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Formulaire envoyé")
         try {
             let response;
             if(!register){
@@ -52,10 +51,12 @@ export function Login({toggleLogged}){
                 });
             }
 
-        const data = await response.json();
-        console.log("Réponse du serveur :", data);
-
-        if (response.ok) {
+            if (!response.ok) {
+                console.log(response);
+                        const text = await response.json();
+                        throw new Error(`${response.status}: ${text.detail}`)
+            }
+            const data = await response.json();
             if (register) {
                 removeRegisterData();
                 alert("Création de compte réussie !");
@@ -66,17 +67,9 @@ export function Login({toggleLogged}){
             const jwt = data.access_token;
             setToken(jwt);
             toggleLogged(); 
-        } else {
-            if (register) {
-                alert("Erreur dans la création du compte.")
-            } else {
-                alert("L'identifiant ou le mot de passe est erroné.")
-            }
-        }
 
         } catch (error) {
-            console.error("Erreur fetch :", error);
-            alert("Impossible de se connecter.");
+            alert(error);
         }
     }
 

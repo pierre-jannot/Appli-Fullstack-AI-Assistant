@@ -33,8 +33,8 @@ export function AIAssistantPage({toggleLogged}){
                             })
                         });
                 if (!response.ok) {
-                    const text = await response.text();
-                    throw new Error(`${response.status}: ${text}`)
+                    const text = await response.json();
+                    throw new Error(`${response.status}: ${text.detail}`)
                 }
                 const data = await response.json();
                 if (data.history) {
@@ -54,6 +54,7 @@ export function AIAssistantPage({toggleLogged}){
 
     return (
         <>
+            <h3 onClick={toggleLogged}>Se déconnecter</h3>
             <h2>Assistant IA ChatGPT</h2>
             <ul>
                 {history.map(item => (
@@ -65,7 +66,8 @@ export function AIAssistantPage({toggleLogged}){
                 ))}
             </ul>
             <form onSubmit={handleSubmit}>
-                <input type="text" value={prompt} name="prompt" placeholder="Prompt"onChange={(e) => setPrompt(e.target.value)}/>
+                <input type="text" value={prompt} name="prompt" placeholder="Prompt"onChange={(e) => setPrompt(e.target.value)}
+                minLength={5} maxLength={300}/>
                 <button type="submit">Envoyer</button>
             </form>
             {submittedPrompt && (

@@ -8,7 +8,7 @@ import decode
 from pathlib import Path
 from dotenv import load_dotenv
 from decode import create_token
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from ai_client import ask_ai
 
 ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
@@ -32,45 +32,27 @@ app.add_middleware(
 #Basemodel:
 
 class LoginBody(BaseModel):
-    email : str
-    password : str
+    email : str = Field(..., min_length=5, max_length=254)
+    password : str = Field(..., min_length=12, max_length=72)
 
 class RegisterBody(BaseModel):
-    email:str
-    password:str
-    name : str
-    surname : str
-
-class HistoryBody(BaseModel):
-   
-    prompt:str
-    answer:str
+    email : str = Field(..., min_length=5, max_length=254)
+    password : str = Field(..., min_length=12, max_length=72)
+    name : str = Field(..., min_length=3, max_length=50)
+    surname : str = Field(..., min_length=3, max_length=50)
 
 class ChatBody(BaseModel):
-    prompt: str
-
-
-@app.get("/")
-def root():
-    return {"salut"}
+    prompt: str = Field(..., min_length=5, max_length=300)
 
 @app.post("/login")
 def login(body:LoginBody):
     user = database.verifyPassword(body)
-
-    if not user:
-        raise HTTPException(status_code=401, detail="email ou mdp invalide")
-    
     token = create_token(user["id"])
     return {"access_token": token}
 
 @app.post("/register")
 def register(body: RegisterBody):
     user = database.addUser(body)
-
-    if not user:
-        raise HTTPException(status_code=409, detail="email déja utilisé")
-    
     token = create_token(user["id"])
     return {"access_token": token}
   
