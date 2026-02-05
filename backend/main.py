@@ -2,14 +2,32 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Depends
 import uvicorn
+import database
+import decode
 
 from pathlib import Path
 from dotenv import load_dotenv
 from decode import create_token
-ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
-load_dotenv(dotenv_path=ENV_PATH)
 from pydantic import BaseModel
 from ai_client import ask_ai
+
+ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
+load_dotenv(dotenv_path=ENV_PATH)
+
+app=FastAPI()
+
+origins = [
+    "http://localhost:5173",
+    "http://localhost:8000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],   # ← accepte GET, POST, OPTIONS, etc.
+    allow_headers=["*"],
+)
 
 #Basemodel:
 
@@ -31,27 +49,6 @@ class HistoryBody(BaseModel):
 class ChatBody(BaseModel):
     message: str
 
-
-ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
-load_dotenv(dotenv_path=ENV_PATH)
-
-import database
-import decode
-
-app=FastAPI()
-
-origins = [
-    "http://localhost:5173",
-    "http://localhost:8000"
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],   # ← accepte GET, POST, OPTIONS, etc.
-    allow_headers=["*"],
-)
 
 @app.get("/")
 def root():
@@ -78,13 +75,15 @@ def register(body: RegisterBody):
     return {"access_token": token}
   
 @app.post("/history")
-def writeHistory(body:HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
-    user = database.addHistory(user_id, body)
+def getHistory(user_id: int = Depends(decode.get_current_user_id)):
+    history = database.getHistory(user_id)
+    return {"history": history}
 
 @app.post("/chat")
-def chat(body: ChatBody):
+def chat(body: ChatBody, user_id: int = Depends(decode.get_current_user_id)):
     try:
         answer = ask_ai(body.message)
+        database.addHistory(user_id, {"prompt":body.message,"answer":answer})
         return {"answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

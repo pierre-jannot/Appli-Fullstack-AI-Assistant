@@ -112,6 +112,23 @@
           "time": "2026-02-03 11:25:05"
         }
       ]
+    },
+    "2": {
+      "id": 5,
+      "history": [
+        {
+          "idprompt": 1,
+          "prompt": "prompt",
+          "answer": "answer",
+          "time": "2026-02-05 10:08:47"
+        },
+        {
+          "idprompt": 2,
+          "prompt": "prompt",
+          "answer": "answer",
+          "time": "2026-02-05 10:09:22"
+        }
+      ]
     }
   }
 }

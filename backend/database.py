@@ -3,12 +3,8 @@ from datetime import datetime
 import bcrypt
 import uuid
 import model
+from fastapi import HTTPException
 db = TinyDB('./database/test-database.json', indent=2)
-
-
-
-
-
 users = db.table('users')
 history = db.table('history')
 User = Query()
@@ -31,14 +27,14 @@ def addUser(body:model.RegisterBody):
             }
         )
         print("User added successfully.")
-        return users.search(User.id == id)[0]
+        return users.get(User.id == id)[0]
     else:
         print("This email is already taken.")
         return False
     
 # Fonction d'ajout d'historique à la base de données
 def addHistory(id,body:model.HistoryBody):
-    userCheck = users.search(User.id == id)
+    userCheck = users.get(User.id == id)
     newPrompt = {
                 "idprompt": 1,
                 "prompt": body.prompt,
@@ -46,7 +42,7 @@ def addHistory(id,body:model.HistoryBody):
                 "time" : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
     if userCheck:
-        userHistory = history.search(User.id == id)
+        userHistory = history.get(User.id == id)
         if userHistory:
             userHistory = userHistory[0]
             newPrompt["idprompt"] = max(prompts["idprompt"] for prompts in userHistory["history"]) + 1
@@ -62,6 +58,17 @@ def addHistory(id,body:model.HistoryBody):
     else:
         print("No user with this id.")
         return False
+    
+def getHistory(id):
+    userCheck = users.get(User.id == id)
+    if userCheck:
+        userHistory = history.get(User.id == id)
+        if userHistory:
+            return userHistory["history"]
+        else:
+            return userHistory
+    else:
+        raise HTTPException(status_code=401, detail="L'id donné n'est pas affecté")
 
 def verifyPassword(body:model.LoginBody):
     user = users.get(User.email == body.email)

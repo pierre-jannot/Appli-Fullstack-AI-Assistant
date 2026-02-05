@@ -35,7 +35,7 @@ def decode_token(token: str) :
         raise HTTPException(status_code=401, detail="Token invalide")
 
 def get_current_user_id(
-    credentials: HTTPAuthorizationCredentials = Depends(security),
+    credentials: HTTPAuthorizationCredentials = Depends(security)
 ):
     token = credentials.credentials  # le texte après "Bearer "
     payload = decode_token(token)

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate} fr
 import './App.css'
 
 import { Login } from './pages/Login'
+import { AIAssistantPage } from "./pages/AIAssistantPage";
 
 function App() {
   const [logged,setLogged] = useState(false);
@@ -18,9 +19,9 @@ function App() {
 
   return (
       <Routes>
-        <Route path="/" element={<Navigate to={!logged ? "/login" : "/home"}/>}/>
+        <Route path="/" element={<Navigate to={!logged ? "/login" : "/aichat"}/>}/>
         <Route path="/login" element={<Login toggleLogged={toggleLogged}/>}/>
-        <Route path="home" element={<h1 onClick={toggleLogged}>Se déconnecter</h1>}/>
+        <Route path="/aichat" element={<AIAssistantPage toggleLogged={toggleLogged}/>}/>
       </Routes>
   )
 }
