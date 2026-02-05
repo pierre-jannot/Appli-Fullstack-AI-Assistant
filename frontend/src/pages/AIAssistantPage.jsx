@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function AIAssistantPage(toggleLogged){
+export function AIAssistantPage({toggleLogged}){
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -17,18 +17,15 @@ export function AIAssistantPage(toggleLogged){
                                 "answer":"answer"
                             })
                         });
-                        const data = await response.json();
-                if (response.ok) {
-                    if (data.history) {
-                        setHistory(data.history)
-
-                    } else {
-                        return <p>Commencer une nouvelle conversation</p>
-                    }
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(`${response.status}: ${text}`)
                 }
-
+                const data = await response.json();
+                if (data.history) {
+                    setHistory(data.history)
+                }
             } catch (error) {
-                console.error("Erreur fetch :", error);
                 alert(error);
                 toggleLogged();
             } finally {
@@ -42,7 +39,7 @@ export function AIAssistantPage(toggleLogged){
 
     return (
         <>
-            <h2>Conversation</h2>
+            <h2>Assistant IA ChatGPT</h2>
             <ul>
                 {history.map(item => (
                     <li key={item.idprompt} style={{ marginBottom: "10px"}}>
