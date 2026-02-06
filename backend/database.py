@@ -70,3 +70,4 @@ def verifyPassword(body:model.LoginBody):
         raise HTTPException(status_code=401, detail="L'email ou le mot de passe renseigné n'est pas valide.")
     
 
+
