@@ -39,6 +39,33 @@ npm run dev
 cd backend
 python -m uvicorn main:app --reload
 
+## Endpoints du projet :
+
+### Connexion
+Chemin : "/login"
+Méthode : POST
+Arguments attendus : objet LoginBody composé d'un email au format EmailStr de BaseModel et un mot de passe en str
+
+### Création de compte
+Chemin : "/register"
+Méthode : POST
+Arguments attendus : objet RegisterBody composé d'un email au format EmailStr de BaseModel, d'un mot de passe, prénom et nom en str
+
+### Vérification du token d'authentification
+Chemin : "/check-token"
+Méthode : GET
+Attendu : Le token JWT dans le header, fourni par le backend après la connexion
+
+### Récupération de l'historique de conversation
+Chemin : "/history"
+Méthode : GET
+Attendu : Le token JWT dans le header, fourni par le backend après la connexion
+
+### Envoi d'un prompt pour le LLM et récupération de la réponse
+Chemin : "/chat"
+Méthode : POST
+Arguments attendus : Le token JWT dans le header, fourni par le backend après la connexion et un objet ChatBody composé d'un prompt au format str
+
 ## Structure du JSON :
 
 Objet utilisateur :

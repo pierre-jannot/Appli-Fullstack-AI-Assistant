@@ -60,7 +60,7 @@ def register(body: RegisterBody):
 def checkToken(user_id: int = Depends(decode.get_current_user_id)):
     return user_id
 
-@app.post("/history")
+@app.get("/history")
 def getHistory(user_id: int = Depends(decode.get_current_user_id)):
     history = database.getHistory(user_id)
     return {"history": history}

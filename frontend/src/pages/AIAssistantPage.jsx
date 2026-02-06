@@ -32,14 +32,9 @@ export function AIAssistantPage(){
             setSubmittedPrompt(null);
             try{
                 const response = await fetch("http://localhost:8000/history", {
-                            method: "POST",
                             headers: { "Content-Type": "application/json",
                                 "Authorization": `Bearer ${localStorage.getItem("token")}`
-                            },
-                            body: JSON.stringify({
-                                "prompt":"prompt",
-                                "answer":"answer"
-                            })
+                            }
                         });
                 if (!response.ok) {
                     const text = await response.json();
