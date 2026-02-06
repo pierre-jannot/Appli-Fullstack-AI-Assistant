@@ -7,14 +7,12 @@
       "name": "test",
       "surname": "test"
     },
-<<<<<<< HEAD
     "2": {
       "id": "633dd4fa-eb2b-469f-8145-eb7f0d173f3b",
       "email": "nabil.gha@gmail.com",
       "password": "$2b$12$fZUWm82KkGJ9W0bJxJWP0.TAdiNqu1kHmOtxzDuCGfuiGXo3.19cW",
       "name": "nabil",
       "surname": "ghadab"
-=======
     "12": {
       "id": "3cf9d873-adc9-4615-aa3c-0352a2d6a4d2",
       "email": "test15@test.fr",
@@ -28,7 +26,6 @@
       "password": "$2b$12$OmAKgyIHEvTLuGScMQntq.QjAQ44FioWaJV3vhCyr935I49ANz7WK",
       "name": "test",
       "surname": "test"
->>>>>>> 160b09c8b8f06cb3e96d693ba741455970d0db04
     }
   },
   "history": {
