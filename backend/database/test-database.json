@@ -7,12 +7,28 @@
       "name": "test",
       "surname": "test"
     },
+<<<<<<< HEAD
     "2": {
       "id": "633dd4fa-eb2b-469f-8145-eb7f0d173f3b",
       "email": "nabil.gha@gmail.com",
       "password": "$2b$12$fZUWm82KkGJ9W0bJxJWP0.TAdiNqu1kHmOtxzDuCGfuiGXo3.19cW",
       "name": "nabil",
       "surname": "ghadab"
+=======
+    "12": {
+      "id": "3cf9d873-adc9-4615-aa3c-0352a2d6a4d2",
+      "email": "test15@test.fr",
+      "password": "$2b$12$Zfqq4GY7SaPT/FmLYeBCKOQoQUHFwXndFyprTHXi3r37fWrKZFD0C",
+      "name": "test",
+      "surname": "test"
+    },
+    "13": {
+      "id": "a2cea9aa-e91e-4ae7-ba16-936c197fc3e7",
+      "email": "test1354@test.fr",
+      "password": "$2b$12$OmAKgyIHEvTLuGScMQntq.QjAQ44FioWaJV3vhCyr935I49ANz7WK",
+      "name": "test",
+      "surname": "test"
+>>>>>>> 160b09c8b8f06cb3e96d693ba741455970d0db04
     }
   },
   "history": {
@@ -66,6 +82,18 @@
           "prompt": "Bonjour !",
           "answer": "Bonjour ! \ud83d\ude0a Comment puis-je vous aider aujourd'hui ?  \n\nN'h\u00e9sitez pas \u00e0 poser votre question en fran\u00e7ais ou en anglais, je serai ravi de vous assister !",
           "time": "2026-02-05 16:46:07"
+        },
+        {
+          "idprompt": 9,
+          "prompt": "Test d'input",
+          "answer": "Voici un programme Python qui teste les entr\u00e9es utilisateur pour v\u00e9rifier si un nombre est positif, n\u00e9gatif ou nul :\n\n```python\ndef test_input():\n    try:\n        # Demande un nombre \u00e0 l'utilisateur\n        nombre = float(input(\"Entrez un nombre : \"))\n        \n        # Test de la valeur\n        if nombre > 0:\n            print(f\"{nombre} est un nombre positif\")\n        elif nombre < 0:\n            print(f\"{nombre} est un nombre n\u00e9gatif\")\n        else:\n            print(\"Le nombre est nul\")\n            \n    except ValueError:\n        # G\u00e8re les entr\u00e9es non num\u00e9riques\n        print(\"Erreur : Veuillez entrer un nombre valide\")\n\n# Ex\u00e9cution du test\ntest_input()\n```\n\n### Fonctionnement :\n1. **Entr\u00e9e utilisateur** : Le programme demande d'entrer un nombre.\n2. **Validation** : \n   - Si l'entr\u00e9e est convertible en nombre (`float`), elle est test\u00e9e :\n     - **Positif** : Affiche un message positif\n     - **N\u00e9gatif** : Affiche un message n\u00e9gatif\n     - **Nul** : Affiche \"Le nombre est nul\"\n   - Si l'entr\u00e9e n'est pas un nombre (ex: \"abc\"), affiche une erreur\n\n### Exemples d'ex\u00e9cution :\n```\n# Test 1 : Entr\u00e9e positive\nEntrez un nombre : 42\n42.0 est un nombre positif\n\n# Test 2 : Entr\u00e9e n\u00e9gative\nEntrez un nombre : -7\n-7.0 est un nombre n\u00e9gatif\n\n# Test 3 : Entr\u00e9e nulle\nEntrez un nombre : 0\nLe nombre est nul\n\n# Test 4 : Entr\u00e9e non num\u00e9rique\nEntrez un nombre : abc\nErreur : Veuillez entrer un nombre valide\n```\n\n### Points cl\u00e9s :\n- Utilisation de `try/except` pour g\u00e9rer les erreurs de conversion\n- Types support\u00e9s : entiers et nombres d\u00e9cimaux\n- Messages clairs selon le r\u00e9sultat\n- Gestion des cas invalides (non num\u00e9rique)",
+          "time": "2026-02-06 10:30:25"
+        },
+        {
+          "idprompt": 10,
+          "prompt": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "answer": "I see you've sent a very long string of the letter \"a\"! \ud83d\ude0a  \n\nIf this was intentional (like testing how I handle large inputs), great! I processed it successfully.  \n\nIf you meant to ask something else or need help with a task, please let me know! For example:  \n- \"Explain quantum computing\"  \n- \"Help me plan a trip to Japan\"  \n- \"Write a poem about the ocean\"  \n\nI'm here to help whenever you're ready! \ud83c\udf1f",
+          "time": "2026-02-06 10:49:57"
         }
       ]
     },
@@ -83,6 +111,47 @@
           "prompt": "quel jour sommes nous ? ",
           "answer": "Nous sommes le **9 mai 2024** (jeudi). \ud83d\ude0a  \nSi vous avez besoin d'autres informations ou d'aide pour g\u00e9rer vos rendez-vous, n'h\u00e9sitez pas !",
           "time": "2026-02-06 09:54:22"
+        }
+      ]
+    },
+    "5": {
+      "id": "a2cea9aa-e91e-4ae7-ba16-936c197fc3e7",
+      "history": [
+        {
+          "idprompt": 1,
+          "prompt": "Bonjour !",
+          "answer": "Bonjour ! \ud83d\ude0a Comment puis-je vous aider aujourd'hui ?",
+          "time": "2026-02-06 09:49:26"
+        },
+        {
+          "idprompt": 2,
+          "prompt": "Peux tu m'\u00e9crire le lorem ipsum ?",
+          "answer": "Voici un exemple de texte **Lorem Ipsum** en fran\u00e7ais, couramment utilis\u00e9 comme placeholder dans la mise en page de documents ou de sites web :\n\n---\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue.  \n\n---\n\n### \ud83d\udccc Notes :\n1. **Origine** : Ce texte est une version alt\u00e9r\u00e9e d'un passage en latin classique (Cic\u00e9ron, *De finibus bonorum et malorum*).\n2. **Utilisation** : Il sert \u00e0 simuler du contenu r\u00e9el sans distraire par un sens litt\u00e9ral.\n3. **Variantes** : D'autres versions existent, mais celle-ci est la plus r\u00e9pandue.\n\nBesoin d'une longueur sp\u00e9cifique ou d\u2019un format particulier (liste, titre, etc.) ? \ud83d\ude0a",
+          "time": "2026-02-06 09:51:40"
+        },
+        {
+          "idprompt": 3,
+          "prompt": "Teste dans ta prochaine r\u00e9ponse tes marqueurs Markdown",
+          "answer": "Voici une d\u00e9monstration des marqueurs Markdown dans cette r\u00e9ponse :\n\n---\n\n# Titre H1\n## Titre H2\n### Titre H3\n#### Titre H4\n##### Titre H5\n###### Titre H6\n\n---\n\n## Texte format\u00e9\n- **Texte en gras** avec deux ast\u00e9risques\n- *Texte en italique* avec un ast\u00e9risque\n- ~~Texte barr\u00e9~~ avec deux tildes\n- `Code en ligne` avec accents graves\n\n---\n\n## Listes\n### Liste non ordonn\u00e9e :\n- Pommes\n- Bananes\n- Oranges\n\n### Liste ordonn\u00e9e :\n1. \u00c9tape 1\n2. \u00c9tape 2\n3. \u00c9tape 3\n\n### Liste imbriqu\u00e9e :\n- Fruit\n  - Rouge\n    - Fraise\n  - Jaune\n    - Banane\n\n---\n\n## Liens et images\nLien vers [Markdown Guide](https://www.markdownguide.org/)  \nImage (placeholder) :  \n![Image Markdown](https://via.placeholder.com/150)\n\n---\n\n## Citations\n> C'est une citation de bloc  \n> Elle peut s'\u00e9tendre sur plusieurs lignes  \n> et utiliser **formatage Markdown**.\n\n---\n\n## Tableaux\n| Fruit       | Couleur  | Prix |\n|-------------|----------|------|\n| Pomme       | Rouge    | 1\u20ac   |\n| Banane      | Jaune    | 0.8\u20ac |\n| Citron      | Jaune    | 1.5\u20ac |\n\n---\n\n## Code et blocs\n- Code en ligne : `python print(\"Hello\")`\n- Bloc de code avec syntaxe :\n```python\ndef hello():\n    print(\"Bonjour Markdown!\")\n```\n\n---\n\n## Ligne horizontale\n---\n\n## Liste de t\u00e2ches\n- [x] T\u00e2che compl\u00e9t\u00e9e\n- [ ] T\u00e2che en attente\n- [ ] T\u00e2che planifi\u00e9e\n\n---\n\n## Notes et avertissements\n> \u2139\ufe0f **Note** : C'est un message important\n> \u26a0\ufe0f **Attention** : Attention aux erreurs\n\n---\n\nCette r\u00e9ponse illustre les principaux \u00e9l\u00e9ments Markdown courants : titres, texte format\u00e9, listes, liens, images, citations, tableaux, blocs de code, lignes horizontales, listes de t\u00e2ches et notes.",
+          "time": "2026-02-06 10:05:03"
+        },
+        {
+          "idprompt": 4,
+          "prompt": "Peux tu tester de l'italique sur un texte en gras ?",
+          "answer": "Voici un test de l'italique appliqu\u00e9 \u00e0 un texte en gras, selon les syntaxes Markdown courantes :\n\n### Exemples combin\u00e9s :\n1. **_Texte gras et italique_**  \n   *(Syntaxe : `**_texte_**`)*  \n   R\u00e9sultat : **_Texte gras et italique_**\n\n2. **\\*Texte gras italique\\***  \n   *(Syntaxe : `**\\*texte\\***`)*  \n   R\u00e9sultat : **\\*Texte gras italique\\***  \n   *(Note : les ast\u00e9risques ext\u00e9rieurs sont visibles ici, car certains interpr\u00e9teurs Markdown n\u00e9cessitent des espaces ou des barres obliques inverses pour \u00e9viter les conflits)*\n\n3. __*Texte gras et italique__*  \n   *(Syntaxe : `__*texte__*`)*  \n   R\u00e9sultat : __*Texte gras et italique__*\n\n### Explications :\n- **Combinaison r\u00e9ussie** : Les syntaxes `**_texte_**` et `__*texte__*` fonctionnent parfaitement dans la plupart des interpr\u00e9teurs Markdown (GitHub, Reddit, Notion, etc.).  \n- **Cas particulier** : La syntaxe `**\\*texte\\***` affiche les ast\u00e9risques si le texte contient des caract\u00e8res sp\u00e9ciaux (comme `*`), mais reste fonctionnelle.\n\n---\n\n### Test interactif :\n**Texte original en gras**  \n`**Texte en gras**` \u2192 **Texte en gras**\n\n**Avec italique ajout\u00e9**  \n`**_Texte gras et italique_**` \u2192 **_Texte gras et italique_**\n\n---\n\n### Pourquoi \u00e7a marche ?\n- Markdown traite les styles imbriqu\u00e9s : les caract\u00e8res `_` ou `*` \u00e0 l'int\u00e9rieur de d\u00e9limiteurs gras (`**` ou `__`) sont interpr\u00e9t\u00e9s comme italiques.  \n- Les **espaces** entre les d\u00e9limiteurs (`* *texte* *`) peuvent causer des \u00e9checs, \u00e0 \u00e9viter.\n\n\u2705 **Recommandation** : Utilisez `**_texte_**` pour une combinaison fiable !",
+          "time": "2026-02-06 10:08:05"
+        },
+        {
+          "idprompt": 5,
+          "prompt": "Test d'\u00e9criture",
+          "answer": "Voici quelques options pour un \"test d'\u00e9criture\" en fran\u00e7ais, selon ce que vous souhaitez \u00e9valuer ou d\u00e9montrer :\n\n---\n\n### Option 1 : Exemple de texte descriptif (style litt\u00e9raire)\n**Sujet : Une matin\u00e9e d'automne**  \nLe soleil filtre \u00e0 travers les feuilles mortes qui jonchent le sol, cr\u00e9ant des mosa\u00efques dor\u00e9es. L\u2019air frais caresse mes joues, m\u00ealant l\u2019odeur humide de la terre \u00e0 la senteur douce du bois qui cr\u00e9pite dans la chemin\u00e9e. Dans le lointain, un corbeau croasse, rompant le silence paisible de la for\u00eat. C\u2019est l\u2019un de ces instants o\u00f9 le temps semble suspendu, o\u00f9 chaque souffle devient un acte de gratitude face \u00e0 la beaut\u00e9 \u00e9ph\u00e9m\u00e8re du monde.\n\n---\n\n### Option 2 : Texte argumentatif (sujet d'actualit\u00e9)\n**Sujet : L'importance des biblioth\u00e8ques aujourd'hui**  \nDans une \u00e8re num\u00e9rique o\u00f9 l\u2019information est omnipr\u00e9sente, les biblioth\u00e8ques conservent un r\u00f4le irrempla\u00e7able. Elles ne sont pas seulement des d\u00e9p\u00f4ts de livres, mais des \u00e9cosyst\u00e8mes culturels accessibles \u00e0 tous. Lieux de savoir et de silence, elles offrent un refuge contre le bruit permanent et favorisent la lecture critique. En proposant des ressources gratuites, des espaces de travail et des animations, elles combattent les in\u00e9galit\u00e9s sociales et nourrissent l\u2019esprit critique. Investir dans les biblioth\u00e8ques, c\u2019est investir dans une soci\u00e9t\u00e9 \u00e9clair\u00e9e et solidaire.\n\n---\n\n### Option 3 : Texte technique (instruction simple)\n**Sujet : Comment faire infusion de th\u00e9**  \n1. **Portez l\u2019eau \u00e0 \u00e9bullition** : Utilisez de l\u2019eau fra\u00eeche (non bouillie ant\u00e9rieurement). La temp\u00e9rature id\u00e9ale varie selon le th\u00e9 : 80\u00b0C pour les th\u00e9s verts, 100\u00b0C pour les noirs.  \n2. **Pr\u00e9parez le th\u00e9** : Placez 1 cuill\u00e8re \u00e0 caf\u00e9 de feuilles (ou 1 sachet) par tasse dans une th\u00e9i\u00e8re ou une tasse.  \n3. **Versez l\u2019eau** : Recouvrez compl\u00e8tement les feuilles et laissez infuser :  \n   - *Th\u00e9 vert* : 2-3 minutes.  \n   - *Th\u00e9 noir* : 4-5 minutes.  \n4. **Retirez les feuilles** pour \u00e9viter l\u2019amertume.  \n5. **D\u00e9gustez** pur, avec du miel, du citron ou du lait selon votre pr\u00e9f\u00e9rence.\n\n---\n\n### Option 4 : Texte cr\u00e9atif (micro-r\u00e9cit)\n**Sujet : La cl\u00e9 oubli\u00e9e**  \nDans le tiroir poussi\u00e9reux du grenier, elle la trouva : une cl\u00e9 rouill\u00e9e portant l\u2019inscription *\"Le secret du jardin\"*. Elle se souvint de son grand-p\u00e8re qui murmurait des \u00e9nigmes en la ber\u00e7ant. Ce soir-l\u00e0, sous la lune, elle l\u2019introduisit dans la serrure rouill\u00e9e de la porte du jardin. Un grincement. Et l\u00e0... des fleurs lumineuses s\u2019\u00e9panouissaient dans le noir, chantant une m\u00e9lodie ancienne. Elle venait de d\u00e9couvrir le tr\u00e9sor de son enfance.\n\n---\n\n### Option 5 : Test de grammaire/correction\n**Texte \u00e0 corriger** :  \n*\"Hier j\u2019ai acheter un livre, mais il\u2019\u00e9tait mal traduit. J\u2019ai \u00e9t\u00e9 tellement d\u00e9\u00e7ue que je le jeter a la poubelle. J\u2019aurais du verifier les critiques avant !\"*  \n\n**Version corrig\u00e9e** :  \n*\"Hier j\u2019ai **achet\u00e9** un livre, mais il **\u00e9tait** mal traduit. J\u2019ai \u00e9t\u00e9 tellement d\u00e9\u00e7ue que je l\u2019 **ai jet\u00e9** **\u00e0** la poubelle. J\u2019aurais **d\u00fb v\u00e9rifier** les critiques avant !\"*  \n\n---\n\nSouhaitez-vous un test sur un point pr\u00e9cis (conjugaison, orthographe, style) ou un th\u00e8me particulier (narratif, professionnel, po\u00e9tique) ? Dites-moi votre besoin ! \ud83d\ude0a",
+          "time": "2026-02-06 10:22:51"
+        },
+        {
+          "idprompt": 6,
+          "prompt": "Bonjour !",
+          "answer": "Bonjour ! \ud83d\ude0a Comment puis-je vous aider aujourd'hui ?",
+          "time": "2026-02-06 10:25:34"
         }
       ]
     }
