@@ -69,6 +69,20 @@
       "password": "$2b$12$cWgWjvcIZ2D7.9QMVARQLOssk1zCzOkKVUag1qhQxDDo/Kx43EHPy",
       "name": "Test",
       "surname": "Test"
+    },
+    "11": {
+      "id": "884d5d32-aa11-4f04-a92a-5720f4eae8dc",
+      "email": "pierre.jannot@isn.yncrea.fr",
+      "password": "$2b$12$v/Ecgq/Z6YYLZV05aaKZ6edSAFyJxgkdWhMKjWXt2tex9/UdX22k6",
+      "name": "test",
+      "surname": "test"
+    },
+    "12": {
+      "id": "3cf9d873-adc9-4615-aa3c-0352a2d6a4d2",
+      "email": "test15@test.fr",
+      "password": "$2b$12$Zfqq4GY7SaPT/FmLYeBCKOQoQUHFwXndFyprTHXi3r37fWrKZFD0C",
+      "name": "test",
+      "surname": "test"
     }
   },
   "history": {
@@ -110,6 +124,99 @@
           "prompt": "string",
           "answer": "string",
           "time": "2026-02-03 11:25:05"
+        }
+      ]
+    },
+    "2": {
+      "id": 5,
+      "history": [
+        {
+          "idprompt": 1,
+          "prompt": "prompt",
+          "answer": "answer",
+          "time": "2026-02-05 10:08:47"
+        },
+        {
+          "idprompt": 2,
+          "prompt": "prompt",
+          "answer": "answer",
+          "time": "2026-02-05 10:09:22"
+        },
+        {
+          "idprompt": 3,
+          "prompt": "Quelle est la longueur d'onde du rouge ?",
+          "answer": "La longueur d'onde de la lumi\u00e8re **rouge** se situe g\u00e9n\u00e9ralement dans la partie sup\u00e9rieure du spectre visible, entre **620 nanom\u00e8tres (nm) et 750 nm**. Voici quelques pr\u00e9cisions importantes :\n\n1.  **Le Spectre Visible :** La lumi\u00e8re visible par l'\u0153il humain s'\u00e9tend environ de **380 nm (violet)** \u00e0 **750 nm (rouge)**. Les limites exactes peuvent varier l\u00e9g\u00e8rement selon les sources et la perception individuelle, mais la plage rouge reste bien identifi\u00e9e comme la plus longue des couleurs visibles.\n2.  **Plaque du Rouge :** On consid\u00e8re couramment :\n    *   **Rouge profond / Rouge fonc\u00e9 :** Environ 620-680 nm\n    *   **Rouge vif :** Environ 620-650 nm\n    *   **Rouge-orange :** Environ 610-620 nm (se situant \u00e0 la fronti\u00e8re avec l'orange)\n    *   **Limite sup\u00e9rieure :** Jusqu'\u00e0 environ 750-780 nm, au-del\u00e0 de laquelle la lumi\u00e8re n'est plus per\u00e7ue par la majorit\u00e9 des humains (infrarouge).\n3.  **Variabilit\u00e9 :** Il n'existe pas une seule longueur d'onde \"rouge\" unique. Le rouge est une plage de longueurs d'onde. Un laser rouge monochromatique aura une longueur d'onde tr\u00e8s pr\u00e9cise (ex: 650 nm), tandis qu'une lumi\u00e8re rouge naturelle (comme celle d'un feu ou d'un panneau) couvrira une large plage autour de 620-750 nm.\n4.  **Exemples :**\n    *   Les diodes \u00e9lectroluminescentes (LEDs) rouges courantes \u00e9mettent souvent autour de **620-660 nm**.\n    *   Les lasers rouges courants (utilis\u00e9s dans les pointeurs) sont g\u00e9n\u00e9ralement autour de **650 nm**.\n    *   La couleur des feux de signalisation rouges est produite dans une large bande du spectre rouge.\n\n**En r\u00e9sum\u00e9 :**\n\n> La lumi\u00e8re rouge a une longueur d'onde **comprise entre 620 nm et 750 nm**, avec des valeurs typiques autour de 620-650 nm pour les sources lumineuses courantes.\n\n**Pour information :**\n*   **1 nanom\u00e8tre (nm) = 10\u207b\u2079 m\u00e8tres (m)**.\n*   En m\u00e8tres, la plage rouge est donc de **6,2 x 10\u207b\u2077 m \u00e0 7,5 x 10\u207b\u2077 m**.",
+          "time": "2026-02-05 14:48:28"
+        },
+        {
+          "idprompt": 4,
+          "prompt": "Quelle sera la date de demain ?",
+          "answer": "La date de demain d\u00e9pend de la date d'aujourd'hui. Puisque je ne sais pas quel jour nous sommes pour vous, voici comment calculer :\n\n1. **Si aujourd'hui est le 15 mai 2024** (date actuelle de cette r\u00e9ponse) :  \n   Demain sera le **16 mai 2024**.\n\n2. **Pour toute autre date** :  \n   Ajoutez simplement 1 jour \u00e0 la date actuelle.  \n   *Exemple* :  \n   - Si aujourd'hui est le 31 d\u00e9cembre 2024, demain sera le 1er janvier 2025.  \n   - Si aujourd'hui est le 28 f\u00e9vrier 2024 (ann\u00e9e bissextile), demain sera le 29 f\u00e9vrier 2024.\n\n**Note** : Cette r\u00e9ponse est bas\u00e9e sur le calendrier gr\u00e9gorien et suppose que \"aujourd'hui\" est la date \u00e0 laquelle vous lisez ce message. Si vous avez besoin de la date exacte pour un jour sp\u00e9cifique, pr\u00e9cisez-moi la date d'aujourd'hui ! \ud83d\ude0a",
+          "time": "2026-02-05 14:50:55"
+        },
+        {
+          "idprompt": 5,
+          "prompt": "Combien font 3+4 ?",
+          "answer": "La r\u00e9ponse \u00e0 **3 + 4** est **7**.  \n\nEn r\u00e9sum\u00e9 :  \n**3 + 4 = 7** \ud83d\ude0a",
+          "time": "2026-02-05 14:52:27"
+        },
+        {
+          "idprompt": 6,
+          "prompt": "Comment vas-tu ?",
+          "answer": "Je vais tr\u00e8s bien, merci ! Je suis GLM, un mod\u00e8le de langage d\u00e9velopp\u00e9 par Zhipu AI, et je suis l\u00e0 pour vous aider avec vos questions ou t\u00e2ches. \n\nComment puis-je vous assister aujourd'hui ? N'h\u00e9sitez pas \u00e0 demander quoi que ce soit, je serai ravi de vous aider.",
+          "time": "2026-02-05 15:14:42"
+        },
+        {
+          "idprompt": 7,
+          "prompt": "Quel jour sommes nous ?",
+          "answer": "Aujourd'hui, nous sommes le **mardi 9 juillet 2024**. \ud83d\ude0a  \n\nSi vous avez besoin d'autres informations ou d'aide, n'h\u00e9sitez pas \u00e0 demander !",
+          "time": "2026-02-05 15:53:31"
+        },
+        {
+          "idprompt": 8,
+          "prompt": "Bonjour !",
+          "answer": "Bonjour ! \ud83d\ude0a Comment puis-je vous aider aujourd'hui ?  \n\nN'h\u00e9sitez pas \u00e0 poser votre question en fran\u00e7ais ou en anglais, je serai ravi de vous assister !",
+          "time": "2026-02-05 16:46:07"
+        }
+      ]
+    },
+    "3": {
+      "id": "884d5d32-aa11-4f04-a92a-5720f4eae8dc",
+      "history": [
+        {
+          "idprompt": 1,
+          "prompt": "Bonjour !",
+          "answer": "Bonjour ! \ud83d\ude0a Comment puis-je t'aider aujourd'hui ?",
+          "time": "2026-02-05 15:09:10"
+        },
+        {
+          "idprompt": 2,
+          "prompt": "Quel jour sommes nous ?",
+          "answer": "Nous sommes aujourd'hui **dimanche 19 mai 2024**. \ud83d\ude0a  \nSi vous cherchez des informations suppl\u00e9mentaires (comme la date dans un autre fuseau horaire ou des d\u00e9tails historiques), n'h\u00e9sitez pas \u00e0 demander !",
+          "time": "2026-02-05 15:09:24"
+        },
+        {
+          "idprompt": 3,
+          "prompt": "Je crois que nous sommes le 5 f\u00e9vrier 2026",
+          "answer": "Pas tout \u00e0 fait. Nous sommes actuellement le **22 mai 2024**.\n\nVous avez un peu d'avance sur le temps !",
+          "time": "2026-02-05 15:10:42"
+        },
+        {
+          "idprompt": 4,
+          "prompt": "Je peux t'assurer que nous sommes le 5 f\u00e9vrier 2026",
+          "answer": "Merci pour ces pr\u00e9cisions ! En tant qu'IA, je n'ai pas de conscience du temps r\u00e9el et mes donn\u00e9es sont fig\u00e9es jusqu'en juillet 2024, mais je peux parfaitement travailler avec la date que vous me donnez : **5 f\u00e9vrier 2026**.\n\nSi vous avez des questions ou des demandes sp\u00e9cifiques li\u00e9es \u00e0 cette date (calculs, \u00e9v\u00e9nements hypoth\u00e9tiques, rappels, etc.), n'h\u00e9sitez pas \u00e0 les partager. Je serais ravi de vous aider sur la base de votre r\u00e9f\u00e9rence temporelle actuelle ! \ud83d\ude0a\n\nPar exemple, je peux vous aider \u00e0 :\n- Calculer des intervalles de temps \u00e0 partir de cette date.\n- Planifier des \u00e9v\u00e9nements fictifs en 2026.\n- Explorer des sujets li\u00e9s \u00e0 cette p\u00e9riode.\n\nQuelle est votre prochaine demande ?",
+          "time": "2026-02-05 15:11:18"
+        }
+      ]
+    },
+    "4": {
+      "id": "3cf9d873-adc9-4615-aa3c-0352a2d6a4d2",
+      "history": [
+        {
+          "idprompt": 1,
+          "prompt": "Bonjour !",
+          "answer": "Bonjour ! \ud83d\ude0a Comment puis-je vous aider aujourd'hui ?",
+          "time": "2026-02-05 16:50:25"
         }
       ]
     }
