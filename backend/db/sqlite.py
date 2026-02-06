@@ -3,6 +3,8 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, selec
 from sqlalchemy.orm import sessionmaker, declarative_base
 from datetime import datetime
 
+import bcrypt
+
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "app.db"
 
@@ -49,9 +51,17 @@ def addHistory(conversationId, prompt, answer, time):
     session.add(history)
     session.commit()
 
+def verifyPassword(email,password):
+    user = session.query(User).filter(User.email == email).first()
+    if user.password == password:
+        return True
+    else:
+        return False
+
 def createBaseUser():
     addUser("pierre.jannot@isen.yncrea.fr","testtesttest","Pierre","Jannot")
     addConversation(1)
     addHistory(1,"Bonjour !","Au revoir !",datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 print(session.get(User,1).email)
+print(verifyPassword("pierre.jannot@isen.yncrea.fr","testtesttest"))
