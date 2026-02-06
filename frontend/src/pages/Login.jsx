@@ -1,10 +1,12 @@
 import { useState } from "react"
 import './Login.css'
+import { useNavigate } from "react-router-dom";
 
-export function Login({toggleLogged}){
+export function Login(){
     const [register,setRegister] = useState(false);
     const [registerData,setRegisterData] = useState({email:'', password:'', name:'', surname:''});
     const [loginData,setLoginData] = useState({email:'', password:''});
+    const navigate = useNavigate();
 
     const removeRegisterData = () => {
         setRegisterData({email:'', password:'', name:'', surname:''});
@@ -34,7 +36,6 @@ export function Login({toggleLogged}){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Formulaire envoyé")
         try {
             let response;
             if(!register){
@@ -52,10 +53,12 @@ export function Login({toggleLogged}){
                 });
             }
 
-        const data = await response.json();
-        console.log("Réponse du serveur :", data);
-
-        if (response.ok) {
+            if (!response.ok) {
+                console.log(response);
+                        const text = await response.json();
+                        throw new Error(`${response.status}: ${text.detail}`)
+            }
+            const data = await response.json();
             if (register) {
                 removeRegisterData();
                 alert("Création de compte réussie !");
@@ -65,18 +68,10 @@ export function Login({toggleLogged}){
             }
             const jwt = data.access_token;
             setToken(jwt);
-            toggleLogged(); 
-        } else {
-            if (register) {
-                alert("Erreur dans la création du compte.")
-            } else {
-                alert("L'identifiant ou le mot de passe est erroné.")
-            }
-        }
+            navigate("/aichat", {replace: true});
 
         } catch (error) {
-            console.error("Erreur fetch :", error);
-            alert("Impossible de se connecter.");
+            alert(error);
         }
     }
 

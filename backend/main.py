@@ -2,41 +2,17 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Depends
 import uvicorn
+import database
+import decode
 
 from pathlib import Path
 from dotenv import load_dotenv
 from decode import create_token
-ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
-load_dotenv(dotenv_path=ENV_PATH)
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, EmailStr
 from ai_client import ask_ai
 
-#Basemodel:
-
-class LoginBody(BaseModel):
-    email : str
-    password : str
-
-class RegisterBody(BaseModel):
-    email:str
-    password:str
-    name : str
-    surname : str
-
-class HistoryBody(BaseModel):
-   
-    prompt:str
-    answer:str
-
-class ChatBody(BaseModel):
-    message: str
-
-
 ENV_PATH = Path(__file__).resolve().parent.parent / ".env"  #chemin pour acceder au env 
 load_dotenv(dotenv_path=ENV_PATH)
-
-import database
-import decode
 
 app=FastAPI()
 
@@ -53,38 +29,47 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-def root():
-    return {"salut"}
+#Basemodel:
+
+class LoginBody(BaseModel):
+    email : EmailStr = Field(..., min_length=5, max_length=254)
+    password : str = Field(..., min_length=12, max_length=72)
+
+class RegisterBody(BaseModel):
+    email : EmailStr = Field(..., min_length=5, max_length=254)
+    password : str = Field(..., min_length=12, max_length=72)
+    name : str = Field(..., min_length=3, max_length=50)
+    surname : str = Field(..., min_length=3, max_length=50)
+
+class ChatBody(BaseModel):
+    prompt: str = Field(..., min_length=5, max_length=300)
 
 @app.post("/login")
 def login(body:LoginBody):
     user = database.verifyPassword(body)
-
-    if not user:
-        raise HTTPException(status_code=401, detail="email ou mdp invalide")
-    
     token = create_token(user["id"])
     return {"access_token": token}
 
 @app.post("/register")
 def register(body: RegisterBody):
     user = database.addUser(body)
-
-    if not user:
-        raise HTTPException(status_code=409, detail="email déja utilisé")
-    
     token = create_token(user["id"])
     return {"access_token": token}
-  
+
+@app.get("/check-token")
+def checkToken(user_id: int = Depends(decode.get_current_user_id)):
+    return user_id
+
 @app.post("/history")
-def writeHistory(body:HistoryBody, user_id: int = Depends(decode.get_current_user_id)):
-    user = database.addHistory(user_id, body)
+def getHistory(user_id: int = Depends(decode.get_current_user_id)):
+    history = database.getHistory(user_id)
+    return {"history": history}
 
 @app.post("/chat")
-def chat(body: ChatBody):
+def chat(body: ChatBody, user_id: int = Depends(decode.get_current_user_id)):
     try:
-        answer = ask_ai(body.message)
+        answer = ask_ai(body.prompt)
+        database.addHistory(user_id, {"prompt":body.prompt,"answer":answer})
         return {"answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
