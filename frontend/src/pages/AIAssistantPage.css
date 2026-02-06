@@ -1,0 +1,59 @@
+.disconnect-button{
+    position: fixed;
+    top: 2.5%;
+    left: 2.5%;
+    background-color: rgb(179, 63, 63);
+    color: white;
+}
+
+.prompt-form {
+    position: fixed;
+    bottom: 2.5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.disconnect-button:hover {
+    border-color: rgb(179, 63, 63);
+    background-color: rgb(220, 81, 81);
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.prompt, .answer {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 12px;
+    word-wrap: break-word;
+    max-width: 90%;
+}
+
+.prompt {
+    align-self: flex-end;
+    background-color: rgb(240, 240, 240);
+}
+
+.answer {
+    text-align: justify;
+    align-self: flex-start;
+    background-color: rgb(242, 249, 255);
+}
+
+.answer strong {
+    font-weight: 600;
+}
+
+.time {
+    text-align: left;
+}
+
+.prompt-input {
+    border-radius: 5px;
+    padding: 0.6em 1.2em;
+    border-color: lightgray;
+    max-width: auto;
+}

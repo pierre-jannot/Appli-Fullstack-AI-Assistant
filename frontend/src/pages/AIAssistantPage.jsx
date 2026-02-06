@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { AIPromptInput } from "../components/AIPromptInput";
-import { useNavigate, Navigate } from "react-router-dom";
+import { FormatText } from "../components/FormatText";
+import { useNavigate } from "react-router-dom";
+import "./AIAssistantPage.css";
 
 export function AIAssistantPage(){
     const [history, setHistory] = useState([]);
@@ -61,19 +63,20 @@ export function AIAssistantPage(){
 
     return (
         <>
-            <h3 onClick={disconnect}>Se déconnecter</h3>
+            <button className="disconnect-button" onClick={disconnect}>Se déconnecter</button>
             <h2>Assistant IA ChatGPT</h2>
             <ul>
                 {history.map(item => (
                     <li key={item.idprompt} style={{ marginBottom: "10px"}}>
-                        <strong>{item.prompt}</strong> <br />
-                        {item.answer} <br />
-                        <small>{item.time}</small>
+                        <p className="prompt">{item.prompt}</p>
+                        <p className="answer"><FormatText text={item.answer}/></p>
+                        <small className="time">{item.time}</small>
                     </li>
                 ))}
             </ul>
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={prompt} name="prompt" placeholder="Prompt"onChange={(e) => setPrompt(e.target.value)}
+            <form className="prompt-form" onSubmit={handleSubmit}>
+                <input className="prompt-input" type="text" value={prompt} name="prompt"
+                placeholder="Prompt"onChange={(e) => setPrompt(e.target.value)}
                 minLength={5} maxLength={300}/>
                 <button type="submit">Envoyer</button>
             </form>
