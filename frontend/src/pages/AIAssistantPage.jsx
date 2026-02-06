@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AIPromptInput } from "../components/AIPromptInput";
-import { FormatText } from "../components/FormatText";
+import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 import "./AIAssistantPage.css";
 
@@ -69,7 +69,7 @@ export function AIAssistantPage(){
                 {history.map(item => (
                     <li key={item.idprompt} style={{ marginBottom: "10px"}}>
                         <p className="prompt">{item.prompt}</p>
-                        <p className="answer"><FormatText text={item.answer}/></p>
+                        <section className="answer"><ReactMarkdown>{item.answer}</ReactMarkdown></section>
                         <small className="time">{item.time}</small>
                     </li>
                 ))}

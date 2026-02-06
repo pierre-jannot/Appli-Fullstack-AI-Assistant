@@ -184,6 +184,18 @@
           "prompt": "Bonjour !",
           "answer": "Bonjour ! \ud83d\ude0a Comment puis-je vous aider aujourd'hui ?  \n\nN'h\u00e9sitez pas \u00e0 poser votre question en fran\u00e7ais ou en anglais, je serai ravi de vous assister !",
           "time": "2026-02-05 16:46:07"
+        },
+        {
+          "idprompt": 9,
+          "prompt": "Test d'input",
+          "answer": "Voici un programme Python qui teste les entr\u00e9es utilisateur pour v\u00e9rifier si un nombre est positif, n\u00e9gatif ou nul :\n\n```python\ndef test_input():\n    try:\n        # Demande un nombre \u00e0 l'utilisateur\n        nombre = float(input(\"Entrez un nombre : \"))\n        \n        # Test de la valeur\n        if nombre > 0:\n            print(f\"{nombre} est un nombre positif\")\n        elif nombre < 0:\n            print(f\"{nombre} est un nombre n\u00e9gatif\")\n        else:\n            print(\"Le nombre est nul\")\n            \n    except ValueError:\n        # G\u00e8re les entr\u00e9es non num\u00e9riques\n        print(\"Erreur : Veuillez entrer un nombre valide\")\n\n# Ex\u00e9cution du test\ntest_input()\n```\n\n### Fonctionnement :\n1. **Entr\u00e9e utilisateur** : Le programme demande d'entrer un nombre.\n2. **Validation** : \n   - Si l'entr\u00e9e est convertible en nombre (`float`), elle est test\u00e9e :\n     - **Positif** : Affiche un message positif\n     - **N\u00e9gatif** : Affiche un message n\u00e9gatif\n     - **Nul** : Affiche \"Le nombre est nul\"\n   - Si l'entr\u00e9e n'est pas un nombre (ex: \"abc\"), affiche une erreur\n\n### Exemples d'ex\u00e9cution :\n```\n# Test 1 : Entr\u00e9e positive\nEntrez un nombre : 42\n42.0 est un nombre positif\n\n# Test 2 : Entr\u00e9e n\u00e9gative\nEntrez un nombre : -7\n-7.0 est un nombre n\u00e9gatif\n\n# Test 3 : Entr\u00e9e nulle\nEntrez un nombre : 0\nLe nombre est nul\n\n# Test 4 : Entr\u00e9e non num\u00e9rique\nEntrez un nombre : abc\nErreur : Veuillez entrer un nombre valide\n```\n\n### Points cl\u00e9s :\n- Utilisation de `try/except` pour g\u00e9rer les erreurs de conversion\n- Types support\u00e9s : entiers et nombres d\u00e9cimaux\n- Messages clairs selon le r\u00e9sultat\n- Gestion des cas invalides (non num\u00e9rique)",
+          "time": "2026-02-06 10:30:25"
+        },
+        {
+          "idprompt": 10,
+          "prompt": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "answer": "I see you've sent a very long string of the letter \"a\"! \ud83d\ude0a  \n\nIf this was intentional (like testing how I handle large inputs), great! I processed it successfully.  \n\nIf you meant to ask something else or need help with a task, please let me know! For example:  \n- \"Explain quantum computing\"  \n- \"Help me plan a trip to Japan\"  \n- \"Write a poem about the ocean\"  \n\nI'm here to help whenever you're ready! \ud83c\udf1f",
+          "time": "2026-02-06 10:49:57"
         }
       ]
     },
