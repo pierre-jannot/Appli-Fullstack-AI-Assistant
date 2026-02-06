@@ -42,7 +42,7 @@ li {
     align-self: flex-start;
     background-color: rgb(242, 249, 255);
     padding-top: 0px;
-    padding-bottom: 0px;
+    padding-bottom: 10px;
 }
 
 .answer strong {
@@ -58,4 +58,9 @@ li {
     padding: 0.6em 1.2em;
     border-color: lightgray;
     max-width: auto;
+}
+
+.loading {
+    display: flex;
+    align-self: flex-start;
 }
