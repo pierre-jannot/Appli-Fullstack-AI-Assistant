@@ -4,7 +4,7 @@ import bcrypt
 import uuid
 import model
 from fastapi import HTTPException
-db = TinyDB('./database/test-database.json', indent=2)
+db = TinyDB('./database/database.json', indent=2)
 users = db.table('users')
 history = db.table('history')
 User = Query()
