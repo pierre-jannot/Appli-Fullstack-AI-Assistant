@@ -9,7 +9,7 @@ history = db.table('history')
 User = Query()
 
 # Fonction d'ajout d'utilisateur à la base de données
-def addUser(body:model.RegisterBody):
+def addUser(body:model.User):
     emailCheck = users.search(User.email == body.email)
     id = str(uuid.uuid4())
     if not emailCheck:
@@ -27,7 +27,7 @@ def addUser(body:model.RegisterBody):
         raise ValueError
     
 # Fonction d'ajout d'historique à la base de données
-def addHistory(id,body:model.HistoryBody):
+def addHistory(id,body:model.History):
     userCheck = users.get(User.id == id)
     newPrompt = {
                 "idprompt": 1,
@@ -60,7 +60,7 @@ def getHistory(id):
     else:
         raise ValueError
 
-def verifyPassword(body:model.LoginBody):
+def verifyPassword(body:model.Login):
     user = users.get(User.email == body.email)
     try:
         access_granted = bcrypt.checkpw(body.password.encode("utf-8"), user["password"].encode("utf-8"))

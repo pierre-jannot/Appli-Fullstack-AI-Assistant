@@ -1,16 +1,16 @@
+class User:
+    def __init__(self, email, password_hash, name, surname):
+        self.email = email
+        self.password_hash = password_hash
+        self.name = name
+        self.surname = surname
 
-#Basemodel:
+class Login:
+    def __init__(self, email, password):
+        self.email = email
+        self.password = password
 
-class LoginBody:
-    email : str
-    password : str
-
-class RegisterBody:
-    email:str
-    password:str
-    name : str
-    surname : str
-
-class HistoryBody:
-    prompt:str
-    answer:str
+class History:
+    def __init__(self, prompt, answer):
+        self.prompt = prompt
+        self.answer = answer
