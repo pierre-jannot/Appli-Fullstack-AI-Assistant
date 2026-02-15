@@ -37,6 +37,10 @@ li {
     background-color: rgb(240, 240, 240);
 }
 
+.prompt-li {
+    margin-bottom: "10px";
+}
+
 .answer {
     text-align: justify;
     align-self: flex-start;

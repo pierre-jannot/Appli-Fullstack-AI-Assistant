@@ -54,7 +54,7 @@ export function AIAssistantPage(){
             <h2>Assistant IA ChatGPT</h2>
             <ul>
                 {history.map(item => (
-                    <li key={item.idprompt} style={{ marginBottom: "10px"}}>
+                    <li className="prompt-li" key={item.idprompt}>
                         <p className="prompt">{item.prompt}</p>
                         <section className="answer"><ReactMarkdown>{item.answer}</ReactMarkdown></section>
                         <small className="time">{item.time}</small>

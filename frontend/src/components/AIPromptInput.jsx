@@ -21,7 +21,7 @@ export function AIPromptInput({disconnect, toggleRefresh, prompt}){
     if (loading) return (
     <>
         <ul>
-            <li style={{ marginBottom: "10px"}}>
+            <li className="prompt-li">
                 <p className="prompt">{prompt}</p>
             </li>
         </ul>
