@@ -10,3 +10,7 @@ class RegisterBody:
     password:str
     name : str
     surname : str
+
+class HistoryBody:
+    prompt:str
+    answer:str
