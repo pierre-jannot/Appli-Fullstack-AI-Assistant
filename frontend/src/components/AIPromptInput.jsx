@@ -1,23 +1,12 @@
 import { useState, useEffect } from "react";
+import { runPrompt } from "../api/api";
 
 export function AIPromptInput({disconnect, toggleRefresh, prompt}){ 
     const [loading, setLoading] = useState(true)   
         useEffect(() => {
             const load = async () => {
                 try{
-                    const response = await fetch("http://localhost:8000/chat", {
-                                method: "POST",
-                                headers: { "Content-Type": "application/json",
-                                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                                },
-                                body: JSON.stringify({
-                                    "prompt":prompt
-                                })
-                            });
-                    if (!response.ok) {
-                        const text = await response.text();
-                        throw new Error(`${response.status}: ${text}`)
-                    }
+                    await runPrompt(localStorage.getItem("token"), prompt)
                     toggleRefresh();
                 } catch (error) {
                     alert(error);

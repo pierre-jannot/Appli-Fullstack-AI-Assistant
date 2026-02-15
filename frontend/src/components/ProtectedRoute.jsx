@@ -1,24 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { checkToken } from "../api/api";
 
 export function ProtectedRoute({ children }) {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:8000/check-token", {
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            }
-        })
-        .then(response => {
-            if (!response.ok) throw new Error();
-        })
-        .catch(() => {
+        const load = async () => {
+            try{
+                const data = await checkToken(localStorage.getItem("token"));
+            } catch(error) {
             localStorage.removeItem("token");
             navigate("/login");
-        })
-        .finally(() => setLoading(false));
+            } finally {
+                setLoading(false);
+            }
+        };
+        load();
     }, []);
 
     if (loading) return <div>Vérification du token...</div>

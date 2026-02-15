@@ -1,6 +1,7 @@
 import { useState } from "react"
 import './Login.css'
 import { useNavigate } from "react-router-dom";
+import { loginUser, registerUser } from "../api/api.js"
 
 export function Login(){
     const [register,setRegister] = useState(false);
@@ -37,32 +38,13 @@ export function Login(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            let response;
-            if(!register){
-                response = await fetch("http://localhost:8000/login", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(loginData)
-                });
-            }
-            else{
-                response = await fetch("http://localhost:8000/register", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(registerData)
-                });
-            }
-
-            if (!response.ok) {
-                console.log(response);
-                        const text = await response.json();
-                        throw new Error(`${response.status}: ${text.detail}`)
-            }
-            const data = await response.json();
+            let data;
             if (register) {
+                data = await registerUser(registerData);
                 removeRegisterData();
                 alert("Création de compte réussie !");
             } else {
+                data = await loginUser(loginData);
                 removeLoginData();
                 alert("Connexion réussie !");
             }

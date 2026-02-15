@@ -3,6 +3,7 @@ import { AIPromptInput } from "../components/AIPromptInput";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 import "./AIAssistantPage.css";
+import { getUserHistory } from "../api/api";
 
 export function AIAssistantPage(){
     const [history, setHistory] = useState([]);
@@ -31,16 +32,7 @@ export function AIAssistantPage(){
         const load = async () => {
             setSubmittedPrompt(null);
             try{
-                const response = await fetch("http://localhost:8000/history", {
-                            headers: { "Content-Type": "application/json",
-                                "Authorization": `Bearer ${localStorage.getItem("token")}`
-                            }
-                        });
-                if (!response.ok) {
-                    const text = await response.json();
-                    throw new Error(`${response.status}: ${text.detail}`)
-                }
-                const data = await response.json();
+                const data = await getUserHistory(localStorage.getItem("token"));
                 if (data.history) {
                     setHistory(data.history)
                 }
