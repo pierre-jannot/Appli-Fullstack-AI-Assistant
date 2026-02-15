@@ -3,7 +3,6 @@ from datetime import datetime
 import bcrypt
 import uuid
 import model
-from fastapi import HTTPException
 db = TinyDB('./database/database.json', indent=2)
 users = db.table('users')
 history = db.table('history')
@@ -25,7 +24,7 @@ def addUser(body:model.RegisterBody):
         )
         return users.get(User.id == id)
     else:
-        raise HTTPException(status_code=409, detail="L'email renseigné est déjà utilisé")
+        raise ValueError
     
 # Fonction d'ajout d'historique à la base de données
 def addHistory(id,body:model.HistoryBody):
@@ -48,7 +47,7 @@ def addHistory(id,body:model.HistoryBody):
                 "history": [newPrompt]
             })
     else:
-        raise HTTPException(status_code=401, detail="L'id donné n'est pas affecté")
+        raise ValueError
     
 def getHistory(id):
     userCheck = users.get(User.id == id)
@@ -59,7 +58,7 @@ def getHistory(id):
         else:
             return userHistory
     else:
-        raise HTTPException(status_code=401, detail="L'id donné n'est pas affecté")
+        raise ValueError
 
 def verifyPassword(body:model.LoginBody):
     user = users.get(User.email == body.email)

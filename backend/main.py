@@ -55,9 +55,12 @@ def login(body:LoginBody):
 
 @app.post("/register")
 def register(body: RegisterBody):
-    user = database.addUser(body)
-    token = create_token(user["id"])
-    return {"access_token": token}
+    try:
+        user = database.addUser(body)
+        token = create_token(user["id"])
+        return {"access_token": token}
+    except ValueError:
+        raise HTTPException(status_code=409, detail="L'email renseigné est déjà utilisé")
 
 @app.get("/check-token")
 def checkToken(user_id: int = Depends(decode.get_current_user_id)):
@@ -65,8 +68,11 @@ def checkToken(user_id: int = Depends(decode.get_current_user_id)):
 
 @app.get("/history")
 def getHistory(user_id: int = Depends(decode.get_current_user_id)):
-    history = database.getHistory(user_id)
-    return {"history": history}
+    try:
+        history = database.getHistory(user_id)
+        return {"history": history}
+    except ValueError:
+        raise HTTPException(status_code=401, detail="L'id donné n'est pas affecté")
 
 @app.post("/chat")
 def chat(body: ChatBody, user_id: int = Depends(decode.get_current_user_id)):
@@ -74,6 +80,8 @@ def chat(body: ChatBody, user_id: int = Depends(decode.get_current_user_id)):
         answer = ask_ai(body.prompt)
         database.addHistory(user_id, {"prompt":body.prompt,"answer":answer})
         return {"answer": answer}
+    except ValueError:
+        raise HTTPException(status_code=401, detail="L'id donné n'est pas affecté")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
