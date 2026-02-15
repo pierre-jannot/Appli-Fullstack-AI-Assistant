@@ -1,5 +1,4 @@
-import { useEffect } from "react"; 
-import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate} from "react-router-dom"
+import { BrowserRouter as Routes, Route, Navigate } from "react-router-dom"
 import './App.css'
 
 import { Login } from './pages/Login'
