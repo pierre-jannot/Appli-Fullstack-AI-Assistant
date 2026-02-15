@@ -46,9 +46,12 @@ class ChatBody(BaseModel):
 
 @app.post("/login")
 def login(body:LoginBody):
-    user = database.verifyPassword(body)
-    token = create_token(user["id"])
-    return {"access_token": token}
+    try:
+        user = database.verifyPassword(body)
+        token = create_token(user["id"])
+        return {"access_token": token}
+    except:
+        raise HTTPException(status_code=401, detail="L'email ou le mot de passe renseigné n'est pas valide.")
 
 @app.post("/register")
 def register(body: RegisterBody):

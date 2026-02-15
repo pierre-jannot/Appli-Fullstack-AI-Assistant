@@ -64,10 +64,13 @@ def getHistory(id):
 def verifyPassword(body:model.LoginBody):
     user = users.get(User.email == body.email)
     try:
-        bcrypt.checkpw(body.password.encode("utf-8"), user["password"].encode("utf-8"))
-        return user
+        access_granted = bcrypt.checkpw(body.password.encode("utf-8"), user["password"].encode("utf-8"))
+        if access_granted:
+            return user
+        else:
+            raise ValueError
     except:
-        raise HTTPException(status_code=401, detail="L'email ou le mot de passe renseigné n'est pas valide.")
+        raise Exception
     
 
 
