@@ -1,0 +1,4 @@
+tinydb
+bcrypt
+jwt
+openai

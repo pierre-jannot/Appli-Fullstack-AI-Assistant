@@ -6,20 +6,8 @@
 cd frontend
 npm install
 
-### TinyDB
-python -m pip install tinydb
-
-### Bcrypt
-python -m pip install bcrypt
-
-### JWT
-python -m pip install jwt
-
-### PYJWT
-python -m pip install pyjwt
-
-### LLM OPENAI
-python -m pip install openai
+### Dépendances Python backend
+python -m pip install -r requirements.txt
 
 ## Variables environnement à stocker dans un fichier .env
 Dans un fichier .env situé à la racine du projet, stocker les variables suivantes :
